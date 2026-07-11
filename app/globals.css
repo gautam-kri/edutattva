@@ -1,0 +1,390 @@
+@import "tailwindcss";
+
+/* ============================================================
+   EDUTATTVA CLASSES — Design System
+   Palette + type tokens derived from the poster & 2026 brochure.
+   ============================================================ */
+
+@theme {
+  /* Brand palette */
+  --color-navy: #0a1f44;
+  --color-navy-900: #061530;
+  --color-navy-700: #12294f;
+  --color-royal: #1b4aa0;
+  --color-royal-600: #163d85;
+  --color-royal-400: #3a67c0;
+  --color-sky: #eaf1fb;
+  --color-sky-200: #d7e5fa;
+  --color-gold: #f5b700;
+  --color-gold-600: #d9a200;
+  --color-gold-100: #fff3cf;
+  --color-crimson: #c8102e;
+  --color-crimson-700: #a20c24;
+  --color-lime: #b7ce1c;
+  --color-lime-600: #94a814;
+  --color-ink: #111827;
+  --color-muted: #4b5563;
+
+  /* Typography — variables are provided by next/font in layout.tsx */
+  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-condensed: var(--font-barlow), "Barlow Condensed", system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgba(10, 31, 68, 0.04), 0 12px 30px -12px rgba(10, 31, 68, 0.18);
+  --shadow-lift: 0 2px 4px rgba(10, 31, 68, 0.06), 0 24px 48px -18px rgba(10, 31, 68, 0.32);
+  --shadow-nav: 0 6px 24px -12px rgba(10, 31, 68, 0.28);
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ------------------------------------------------------------
+   Base
+   ------------------------------------------------------------ */
+@layer base {
+  * {
+    border-color: var(--color-sky-200);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--color-navy);
+    text-wrap: balance;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Visible, on-brand keyboard focus everywhere */
+  :focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-navy);
+  }
+}
+
+/* ------------------------------------------------------------
+   Layout helpers
+   ------------------------------------------------------------ */
+@layer components {
+  .container-x {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 80rem; /* 1280px */
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x { padding-inline: 2rem; }
+  }
+
+  .section {
+    padding-block: clamp(3.5rem, 7vw, 6.5rem);
+  }
+  .section-tight {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  /* Eyebrow: the brochure's ●●● gold marker + condensed label */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    color: var(--color-royal);
+  }
+  .eyebrow::before {
+    content: "●●●";
+    letter-spacing: 0.1em;
+    color: var(--color-gold);
+    font-size: 0.7em;
+  }
+  .eyebrow--light { color: rgba(255, 255, 255, 0.85); }
+  .eyebrow--center { justify-content: center; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: 0.005em;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.18s var(--ease-out-quart), box-shadow 0.18s var(--ease-out-quart),
+      background-color 0.18s ease, color 0.18s ease;
+    will-change: transform;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-gold {
+    background: var(--color-gold);
+    color: var(--color-navy);
+    box-shadow: 0 10px 24px -10px rgba(245, 183, 0, 0.7);
+  }
+  .btn-gold:hover { background: #ffc61a; box-shadow: 0 16px 30px -12px rgba(245, 183, 0, 0.8); }
+
+  .btn-navy {
+    background: var(--color-navy);
+    color: #fff;
+  }
+  .btn-navy:hover { background: var(--color-navy-700); }
+
+  .btn-royal {
+    background: var(--color-royal);
+    color: #fff;
+  }
+  .btn-royal:hover { background: var(--color-royal-600); }
+
+  .btn-ghost {
+    background: transparent;
+    color: #fff;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+  }
+  .btn-ghost:hover { box-shadow: inset 0 0 0 2px #fff; background: rgba(255, 255, 255, 0.08); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-royal);
+    box-shadow: inset 0 0 0 2px var(--color-royal);
+  }
+  .btn-outline:hover { background: var(--color-royal); color: #fff; }
+
+  /* Capsule cards */
+  .card {
+    background: #fff;
+    border: 1px solid var(--color-sky-200);
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s var(--ease-out-quart), box-shadow 0.25s var(--ease-out-quart),
+      border-color 0.25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-sky);
+  }
+
+  /* Signature crimson experience badge */
+  .exp-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    background: var(--color-crimson);
+    color: #fff;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    box-shadow: 0 10px 22px -10px rgba(200, 16, 46, 0.6);
+    font-family: var(--font-condensed);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .exp-badge__num {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .exp-badge__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.95;
+  }
+
+  /* Urgency / info chip */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .chip-gold { background: var(--color-gold); color: var(--color-navy); }
+  .chip-crimson { background: var(--color-crimson); color: #fff; }
+  .chip-lime { background: var(--color-lime); color: var(--color-navy); }
+  .chip-sky { background: var(--color-sky); color: var(--color-royal-600); }
+
+  /* Gold keyword highlight (mirrors "IITJEE | NEET | Foundation") */
+  .hl-gold { color: var(--color-gold); }
+  .hl-lime { color: var(--color-lime); }
+  .hl-crimson { color: var(--color-crimson); }
+  .hl-royal { color: var(--color-royal); }
+
+  /* Lime check bullet list */
+  .check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+  .check-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    align-items: start;
+    gap: 0.6rem;
+    color: var(--color-muted);
+  }
+  .check-list li::before {
+    content: "";
+    grid-column: 1;
+    margin-top: 0.15rem;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 999px;
+    background: var(--color-lime);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center / 78% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center / 78% no-repeat;
+  }
+
+  /* Section marker divider (lime) */
+  .rule-lime {
+    height: 4px;
+    width: 64px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-gold), var(--color-lime));
+  }
+
+  /* Photo placeholder */
+  .ph {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-royal) 100%);
+    color: rgba(255, 255, 255, 0.92);
+    isolation: isolate;
+  }
+  .ph::after {
+    /* faint campus-dome motif echoing the poster backdrop */
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle at 20% 120%, rgba(255, 255, 255, 0.12), transparent 45%),
+      radial-gradient(circle at 85% -10%, rgba(245, 183, 0, 0.18), transparent 40%);
+  }
+
+  /* Fee table */
+  .fee {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.95rem;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--color-sky-200);
+  }
+  .fee thead th {
+    background: var(--color-navy);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-align: left;
+    padding: 0.9rem 1rem;
+    font-size: 0.9rem;
+  }
+  .fee tbody td, .fee tbody th {
+    padding: 0.85rem 1rem;
+    border-top: 1px solid var(--color-sky-200);
+    vertical-align: top;
+    text-align: left;
+  }
+  .fee tbody tr:nth-child(even) { background: var(--color-sky); }
+  .fee tbody th { font-weight: 700; color: var(--color-navy); }
+  .fee .price {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--color-royal);
+    white-space: nowrap;
+  }
+}
+
+/* ------------------------------------------------------------
+   Scroll-reveal + hero load-in
+   ------------------------------------------------------------ */
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s var(--ease-out-quart), transform 0.7s var(--ease-out-quart);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .anim-fadeup { animation: fadeUp 0.8s var(--ease-out-quart) both; }
+  .anim-float { animation: floatY 5s ease-in-out infinite; }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.22s; }
+  .delay-3 { animation-delay: 0.34s; }
+  .delay-4 { animation-delay: 0.46s; }
+  .delay-5 { animation-delay: 0.58s; }
+
+  /* subtle brand dot-grid backdrop for dark panels */
+  .dotgrid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+/* ------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
