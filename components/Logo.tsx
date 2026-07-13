@@ -28,14 +28,14 @@ export default function Logo({ variant = "full", theme = "dark", className = "" 
       {variant === "full" && (
         <span className="flex flex-col leading-none">
           <span
-            className="font-display font-extrabold tracking-tight text-[1.18rem] leading-none"
-            style={{ color: wordColor, fontFamily: "var(--font-display)" }}
+            className="text-[1.32rem] font-bold leading-none tracking-tight"
+            style={{ color: wordColor, fontFamily: "var(--font-wordmark)" }}
           >
             EDUTATTVA <span style={{ color: "var(--color-royal-400)" }}>CLASSES</span>
           </span>
           <span
-            className="mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.18em]"
-            style={{ color: tagColor, fontFamily: "var(--font-condensed)" }}
+            className="mt-1 text-[0.68rem] font-normal tracking-[0.08em]"
+            style={{ color: tagColor, fontFamily: "var(--font-tagline)" }}
           >
             Where Fundamentals Become Excellence
           </span>

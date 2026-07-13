@@ -45,9 +45,9 @@ export const nav: NavItem[] = [
 /* Animated stat strip on the home page */
 export const homeStats = [
   { value: 10000, suffix: "+", label: "Students Mentored" },
-  { value: 80, suffix: "+", label: "Years Combined Academic Experience" },
-  { value: 25000, suffix: "+", label: "Practice Questions" },
-  { value: 1000, suffix: "+", label: "Hours of Teaching" },
+  { value: 80, suffix: "+", label: "Years Combined Academic Experience", combined: true },
+  { value: 250000, suffix: "+", label: "Questions Solved", combined: true },
+  { value: 100000, suffix: "+", label: "Hrs of Teaching", combined: true },
 ];
 
 export const trustLine =
@@ -341,7 +341,7 @@ export const onlineFeatures = [
 export const whyEdutattva = [
   { title: "Small Batches", desc: "Limited students per batch so every learner is seen, heard and guided." },
   { title: "Personal Mentorship", desc: "One-on-one mentoring, feedback and correction strategies for each student." },
-  { title: "Nearly Double Contact Hours", desc: "Nearly double the effective academic contact hours of conventional programs." },
+  { title: "Nearly Double the* Contact Hours", desc: "Nearly double the effective academic contact hours of conventional programs.", combined: true },
   { title: "Powerful Testing Ecosystem", desc: "Continuous benchmarking, precise analysis and performance improvement." },
   { title: "Affordable Excellence", desc: "Quality academic systems made more affordable — without compromising standards." },
 ];

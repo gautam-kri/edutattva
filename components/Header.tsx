@@ -116,16 +116,27 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Mobile trigger */}
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="grid h-11 w-11 place-items-center rounded-xl text-navy hover:bg-sky lg:hidden"
-          aria-label="Open menu"
-          aria-expanded={open}
-        >
-          <Icon name="menu" size={26} />
-        </button>
+        {/* Mobile actions */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <Link
+            href="/admissions#enquiry"
+            className="inline-flex h-10 items-center gap-1.5 rounded-full bg-gold px-4 text-[0.9rem] font-bold text-navy shadow-[0_8px_18px_-8px_rgba(245,183,0,0.7)] transition-colors hover:bg-[#ffc61a]"
+            style={{ fontFamily: "var(--font-display)" }}
+            aria-label="Make an enquiry"
+          >
+            <Icon name="mail" size={17} />
+            Enquiry
+          </Link>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="grid h-11 w-11 place-items-center rounded-xl text-navy hover:bg-sky"
+            aria-label="Open menu"
+            aria-expanded={open}
+          >
+            <Icon name="menu" size={26} />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile drawer */}

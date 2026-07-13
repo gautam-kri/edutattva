@@ -39,7 +39,9 @@ export type IconName =
   | "clock"
   | "sparkles"
   | "layers"
-  | "handshake";
+  | "handshake"
+  | "instagram"
+  | "window";
 
 const paths: Record<IconName, React.ReactNode> = {
   book: <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM20 18v3H6.5A2.5 2.5 0 0 1 4 18.5" />,
@@ -233,6 +235,21 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M12 8 9 5 3 9v6l3 2 3-2M12 8l3-3 6 4v6l-3 2-3-2" />
       <path d="M9 15l2 2M12 8l-2 2" />
+    </>
+  ),
+  instagram: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  window: (
+    <>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 9h18" />
+      <circle cx="6.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+      <circle cx="9" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
     </>
   ),
 };

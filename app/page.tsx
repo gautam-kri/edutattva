@@ -21,6 +21,25 @@ import Icon, { type IconName } from "@/components/Icon";
 
 const whyIcons: IconName[] = ["users", "mentor", "clock", "chart", "handshake"];
 
+/** Renders a string, turning any "*" into a very subtle superscript footnote marker. */
+function MarkedText({ text }: { text: string }) {
+  const parts = text.split("*");
+  return (
+    <>
+      {parts.map((p, i) => (
+        <span key={i}>
+          {p}
+          {i < parts.length - 1 && (
+            <sup className="align-super text-[0.5em] font-normal text-muted/40" aria-hidden="true">
+              *
+            </sup>
+          )}
+        </span>
+      ))}
+    </>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
@@ -278,7 +297,9 @@ export default function HomePage() {
               <Reveal key={w.title} delay={i * 70} className="h-full">
                 <div className="card card-hover h-full p-6">
                   <IconCircle name={whyIcons[i]} tone={i % 2 === 0 ? "royal" : "gold"} />
-                  <h3 className="mt-4 text-[1.15rem]">{w.title}</h3>
+                  <h3 className="mt-4 text-[1.15rem]">
+                    <MarkedText text={w.title} />
+                  </h3>
                   <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{w.desc}</p>
                 </div>
               </Reveal>
@@ -295,6 +316,7 @@ export default function HomePage() {
               </div>
             </Reveal>
           </div>
+          <p className="mt-6 text-[0.7rem] text-muted/40">*Combined across faculty.</p>
         </div>
       </section>
 

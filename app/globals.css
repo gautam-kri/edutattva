@@ -1,6 +1,45 @@
 @import "tailwindcss";
 
 /* ============================================================
+   Brand fonts — drop the font files into /public/fonts/
+   (see /public/fonts/README.md for the exact filenames expected).
+   Until the files are added, each family gracefully falls back
+   to the loaded Archivo / Inter / Barlow stacks below.
+   ============================================================ */
+@font-face {
+  font-family: "Agrandir";
+  src: url("/fonts/agrandir.woff2") format("woff2"),
+    url("/fonts/agrandir.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Einstellung";
+  src: url("/fonts/neue-einstellung.woff2") format("woff2"),
+    url("/fonts/neue-einstellung.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FoundationTitlesHand";
+  src: url("/fonts/foundation-titles-hand.woff2") format("woff2"),
+    url("/fonts/foundation-titles-hand.otf") format("opentype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "FabioloSmallCap";
+  src: url("/fonts/fabiolo-smallcap.woff2") format("woff2"),
+    url("/fonts/fabiolo-smallcap.otf") format("opentype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
    EDUTATTVA CLASSES — Design System
    Palette + type tokens derived from the poster & 2026 brochure.
    ============================================================ */
@@ -25,10 +64,13 @@
   --color-ink: #111827;
   --color-muted: #4b5563;
 
-  /* Typography — variables are provided by next/font in layout.tsx */
-  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  /* Typography — Agrandir (titles) + Neue Einstellung (body); Archivo/Inter are
+     loaded via next/font as fallbacks. Wordmark & tagline use their own faces. */
+  --font-display: "Agrandir", var(--font-archivo), "Archivo", system-ui, sans-serif;
   --font-condensed: var(--font-barlow), "Barlow Condensed", system-ui, sans-serif;
-  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-sans: "Neue Einstellung", var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-wordmark: "FoundationTitlesHand", var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-tagline: "FabioloSmallCap", var(--font-barlow), "Barlow Condensed", system-ui, sans-serif;
 
   /* Shadows */
   --shadow-card: 0 1px 2px rgba(10, 31, 68, 0.04), 0 12px 30px -12px rgba(10, 31, 68, 0.18);

@@ -21,7 +21,12 @@ function useCountUp(target: number, run: boolean, duration = 1600) {
       if (p < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    // Guarantee the final value even if rAF is throttled (e.g. a background tab).
+    const settle = window.setTimeout(() => setValue(target), duration + 600);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(settle);
+    };
   }, [target, run, duration]);
   return value;
 }
@@ -31,11 +36,13 @@ function StatItem({
   suffix,
   label,
   run,
+  combined = false,
 }: {
   value: number;
   suffix: string;
   label: string;
   run: boolean;
+  combined?: boolean;
 }) {
   const n = useCountUp(value, run);
   return (
@@ -46,6 +53,11 @@ function StatItem({
       >
         {n.toLocaleString("en-IN")}
         <span style={{ color: "var(--color-gold)" }}>{suffix}</span>
+        {combined && (
+          <sup className="align-super text-[0.32em] font-normal text-white/35" aria-hidden="true">
+            *
+          </sup>
+        )}
       </div>
       <div className="mt-2 text-[0.82rem] font-medium uppercase tracking-[0.1em] text-white/70">
         {label}
@@ -84,13 +96,18 @@ export default function StatStrip() {
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className="grid grid-cols-2 gap-y-8 gap-x-4 md:grid-cols-4 md:divide-x md:divide-white/15"
-    >
-      {homeStats.map((s) => (
-        <StatItem key={s.label} {...s} run={run} />
-      ))}
+    <div>
+      <div
+        ref={ref}
+        className="grid grid-cols-2 gap-y-8 gap-x-4 md:grid-cols-4 md:divide-x md:divide-white/15"
+      >
+        {homeStats.map((s) => (
+          <StatItem key={s.label} {...s} run={run} />
+        ))}
+      </div>
+      <p className="mt-7 text-center text-[0.7rem] tracking-wide text-white/25">
+        *Combined across faculty.
+      </p>
     </div>
   );
 }

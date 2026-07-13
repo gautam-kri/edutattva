@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Barlow_Condensed, Inter } from "next/font/google";
 import "./globals.css";
-import UtilityBar from "@/components/UtilityBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
@@ -54,6 +53,16 @@ export const metadata: Metadata = {
     title: "Edutattva Classes — Where Fundamentals Become Excellence",
     description: "IIT-JEE | NEET | Foundation programs for Class 6–12 in Chennai.",
   },
+  manifest: "/favicons/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicons/favicon.ico", sizes: "any" },
+    ],
+    apple: [{ url: "/favicons/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: ["/favicons/favicon.ico"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -66,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <UtilityBar />
         <Header />
         <main id="main">{children}</main>
         <Footer />

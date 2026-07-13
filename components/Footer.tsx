@@ -5,6 +5,9 @@ import Icon from "./Icon";
 
 const programLinks = nav.find((n) => n.label === "Programs")?.children ?? [];
 
+const socialCls =
+  "grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white/80 transition-colors hover:bg-gold hover:text-navy";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -34,17 +37,48 @@ export default function Footer() {
             genuinely affordable — quality at an affordable fee.
           </p>
           <div className="mt-5 flex gap-3">
-            {(["globe", "whatsapp", "mail", "phone"] as const).map((n) => (
-              <span
-                key={n}
-                data-placeholder="true"
-                aria-label={`${n} link placeholder`}
-                className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white/80 transition-colors hover:bg-gold hover:text-navy"
-              >
-                <Icon name={n} size={18} />
-              </span>
-            ))}
+            <a
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat with us on WhatsApp"
+              className={socialCls}
+            >
+              <Icon name="whatsapp" size={18} />
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-placeholder="true"
+              aria-label="Instagram (coming soon)"
+              className={socialCls}
+            >
+              <Icon name="instagram" size={18} />
+            </a>
+            <a
+              href="mailto:enquiries@edutattva.com"
+              aria-label="Email enquiries@edutattva.com"
+              className={socialCls}
+            >
+              <Icon name="mail" size={18} />
+            </a>
+            <a
+              href={`tel:${site.phoneDial}`}
+              aria-label={`Call ${site.phoneDisplay}`}
+              className={socialCls}
+            >
+              <Icon name="phone" size={18} />
+            </a>
           </div>
+
+          <Link
+            href="/student-sensory"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-gold"
+          >
+            <Icon name="window" size={16} className="text-gold" />
+            Student Sensory
+          </Link>
         </div>
 
         <div>
