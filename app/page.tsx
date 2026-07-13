@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   programs,
   facultySpotlight,
+  leadership,
   whyEdutattva,
   trustLine,
   site,
@@ -13,13 +14,18 @@ import StatStrip from "@/components/StatStrip";
 import ProgramCard from "@/components/ProgramCard";
 import E4Loop from "@/components/E4Loop";
 import Testimonials from "@/components/Testimonials";
+import VideoTestimonials from "@/components/VideoTestimonials";
 import CTABand from "@/components/CTABand";
 import ExpBadge from "@/components/ExpBadge";
 import Photo from "@/components/Photo";
 import IconCircle from "@/components/IconCircle";
 import Icon, { type IconName } from "@/components/Icon";
 
-const whyIcons: IconName[] = ["users", "mentor", "clock", "chart", "handshake"];
+const whyIcons: IconName[] = ["mentor", "clock", "chart", "handshake"];
+
+// Homepage faculty pyramid: PSOM & MNT on top, the other three beneath.
+const facultyTop = [leadership[1], leadership[0]]; // Sourav (PSOM), Nishant (MNT)
+const facultyBottom = [leadership[2], leadership[3], leadership[4]]; // CRK, Rahul, Bhargava
 
 /** Renders a string, turning any "*" into a very subtle superscript footnote marker. */
 function MarkedText({ text }: { text: string }) {
@@ -37,6 +43,31 @@ function MarkedText({ text }: { text: string }) {
         </span>
       ))}
     </>
+  );
+}
+
+function FacultyCard({ f, delay }: { f: (typeof leadership)[number]; delay: number }) {
+  return (
+    <Reveal delay={delay} className="h-full">
+      <div className="card card-hover h-full overflow-hidden">
+        <Photo
+          src={f.photo}
+          alt={`${f.name} — ${f.subject}`}
+          aspect="aspect-[4/3]"
+          rounded="rounded-none"
+          position="object-top"
+        />
+        <div className="relative p-6">
+          <div className="absolute -top-5 right-6">
+            <ExpBadge years={f.years} />
+          </div>
+          <h3 className="text-[1.25rem]">{f.name}</h3>
+          <p className="mt-1 font-semibold text-royal">
+            {f.subject} · {f.alias}
+          </p>
+        </div>
+      </div>
+    </Reveal>
   );
 }
 
@@ -62,7 +93,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="container-x relative grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
+        <div className="container-x relative grid items-center gap-12 py-16 lg:grid-cols-[1fr_1fr] lg:py-24">
           {/* Left */}
           <div>
             <div className="anim-fadeup flex flex-wrap items-center gap-2.5">
@@ -109,14 +140,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Right — faculty trio */}
-          <div className="anim-fadeup delay-3 relative">
-            <div className="grid grid-cols-3 gap-3">
+          {/* Right — faculty trio, made grand */}
+          <div className="anim-fadeup delay-3">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
               {facultySpotlight.map((f, idx) => (
                 <div
                   key={f.name}
-                  className={`rounded-2xl bg-white/5 p-2 ring-1 ring-white/10 backdrop-blur-sm ${
-                    idx === 1 ? "-translate-y-4" : ""
+                  className={`rounded-2xl bg-white/[0.07] p-2.5 shadow-xl backdrop-blur-sm ${
+                    idx === 1 ? "-translate-y-6 ring-2 ring-gold/50" : "ring-1 ring-white/10"
                   }`}
                 >
                   <Photo
@@ -127,13 +158,13 @@ export default function HomePage() {
                     position="object-top"
                     priority
                   />
-                  <div className="px-1 pb-1 pt-2.5 text-center">
-                    <p className="text-[0.78rem] font-bold leading-tight text-white">{f.name}</p>
-                    <p className="text-[0.66rem] uppercase tracking-wide text-white/55">
+                  <div className="px-1 pb-1 pt-3 text-center">
+                    <p className="text-[0.9rem] font-bold leading-tight text-white">{f.name}</p>
+                    <p className="mt-0.5 text-[0.68rem] uppercase tracking-wide text-white/60">
                       {f.role}
                     </p>
                     <span
-                      className="mt-1.5 inline-block rounded-full bg-crimson px-2 py-0.5 text-[0.62rem] font-bold text-white"
+                      className="mt-2 inline-block rounded-full bg-crimson px-2.5 py-1 text-[0.72rem] font-bold text-white"
                       style={{ fontFamily: "var(--font-condensed)" }}
                     >
                       {f.years} YRS
@@ -143,9 +174,9 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Floating combined-experience badge */}
-            <div className="anim-float absolute -bottom-5 left-1/2 -translate-x-1/2">
-              <span className="flex items-center gap-2 rounded-full bg-crimson px-5 py-2.5 shadow-[0_16px_30px_-10px_rgba(200,16,46,0.7)]">
+            {/* Combined-experience badge — sits below the cards so it never overlaps them */}
+            <div className="mt-7 flex justify-center">
+              <span className="anim-float flex items-center gap-2 rounded-full bg-crimson px-6 py-3 shadow-[0_16px_30px_-10px_rgba(200,16,46,0.7)]">
                 <span
                   className="text-2xl font-extrabold leading-none text-white"
                   style={{ fontFamily: "var(--font-condensed)" }}
@@ -250,32 +281,18 @@ export default function HomePage() {
             }
             intro="Academic minds behind years of IIT-JEE & NEET results at FIITJEE & FGS."
           />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {facultySpotlight.map((f, i) => (
-              <Reveal key={f.name} delay={i * 90} className="h-full">
-                <div className="card card-hover h-full overflow-hidden">
-                  <Photo
-                    src={f.photo}
-                    alt={`${f.name} — ${f.role}`}
-                    aspect="aspect-[4/3]"
-                    rounded="rounded-none"
-                    position="object-top"
-                  />
-                  <div className="relative p-6">
-                    <div className="absolute -top-5 right-6">
-                      <ExpBadge years={f.years} />
-                    </div>
-                    <h3 className="text-[1.3rem]">{f.name}</h3>
-                    <p className="mt-1 font-semibold text-royal">{f.role}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-9 text-center">
-            <Link href="/faculty" className="btn btn-navy">
-              Meet the full academic leadership <Icon name="arrow" size={18} />
-            </Link>
+          {/* Pyramid: PSOM & MNT on top, the other three beneath (PSOM/MNT stay first on mobile) */}
+          <div className="mt-10 space-y-6">
+            <div className="mx-auto grid max-w-2xl grid-cols-2 gap-6">
+              {facultyTop.map((f, i) => (
+                <FacultyCard key={f.name} f={f} delay={i * 90} />
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+              {facultyBottom.map((f, i) => (
+                <FacultyCard key={f.name} f={f} delay={i * 90} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -330,6 +347,21 @@ export default function HomePage() {
           />
           <div className="mt-10">
             <Testimonials />
+          </div>
+        </div>
+      </section>
+
+      {/* ============ VIDEO TESTIMONIALS ============ */}
+      <section className="section bg-sky">
+        <div className="container-x">
+          <SectionHeading
+            center
+            eyebrow="Video Stories"
+            title="Hear it straight from our families"
+            intro="Video testimonials from parents and students — landing in this space soon."
+          />
+          <div className="mt-10">
+            <VideoTestimonials />
           </div>
         </div>
       </section>

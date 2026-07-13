@@ -41,7 +41,8 @@ export type IconName =
   | "layers"
   | "handshake"
   | "instagram"
-  | "window";
+  | "window"
+  | "play";
 
 const paths: Record<IconName, React.ReactNode> = {
   book: <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM20 18v3H6.5A2.5 2.5 0 0 1 4 18.5" />,
@@ -252,6 +253,7 @@ const paths: Record<IconName, React.ReactNode> = {
       <circle cx="9" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
     </>
   ),
+  play: <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />,
 };
 
 type IconProps = SVGProps<SVGSVGElement> & {

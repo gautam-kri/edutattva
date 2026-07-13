@@ -8,7 +8,7 @@ export const site = {
   tagline: "Where Fundamentals Become Excellence",
   phoneDisplay: "7075 7075 40",
   phoneDial: "+917075707540",
-  whatsapp: "https://wa.me/917075707540",
+  whatsapp: "https://api.whatsapp.com/send?phone=917075707540",
   website: "www.edutattva.com",
   admissions: "Admissions Open 2026–27",
   locations: [
@@ -44,7 +44,7 @@ export const nav: NavItem[] = [
 
 /* Animated stat strip on the home page */
 export const homeStats = [
-  { value: 10000, suffix: "+", label: "Students Mentored" },
+  { value: 10000, suffix: "+", label: "Students Mentored", combined: true },
   { value: 80, suffix: "+", label: "Years Combined Academic Experience", combined: true },
   { value: 250000, suffix: "+", label: "Questions Solved", combined: true },
   { value: 100000, suffix: "+", label: "Hrs of Teaching", combined: true },
@@ -234,12 +234,12 @@ export const foundationFees = {
 
 /* Edu Ignite (9–10) */
 export const igniteWhy = [
-  { title: "Two-Year Head Start", desc: "Begin JEE/NEET foundations in Class IX and compound the advantage." },
-  { title: "Board + Competitive Sync", desc: "School syllabus and competitive prep move together, not against each other." },
-  { title: "Concept Depth", desc: "Move from rote learning to real conceptual mastery early." },
-  { title: "Exam Temperament", desc: "Regular testing builds accuracy, speed and confidence under pressure." },
-  { title: "Olympiad Readiness", desc: "Sharpen higher-order thinking through Olympiad-grade problems." },
-  { title: "Mentored Growth", desc: "Personal mentoring keeps every student on track and unblocked." },
+  { title: "Classroom & Integrated", desc: "A JEE/NEET foundation program for Grade 9 & 10, delivered within your school framework." },
+  { title: "Board + Competitive, Together", desc: "School and competitive preparation move as one, with no duplication of effort." },
+  { title: "Two Delivery Modes", desc: "Choose Integrated (within school hours) or Hybrid (Sunday offline plus weekday online)." },
+  { title: "Study Material Included", desc: "Every fee includes Edutattva study material and online testing platform access." },
+  { title: "Available at Two Campuses", desc: "Offered at SJPS (St John's), Siruseri and BHIS (Billabong), Kelambakkam." },
+  { title: "Flexible Installments", desc: "Installment options are available for both Grade 9 and Grade 10." },
 ];
 
 export const igniteFees = {
@@ -251,7 +251,7 @@ export const igniteFees = {
       prices: ["₹80,000", "₹80,000"],
     },
     {
-      mode: "Hybrid — Sunday 6 hrs offline + weekday online (2 hrs/day, 2 days, 6–8 PM)",
+      mode: "Hybrid — Sunday 6 hrs offline + weekday online (2 hrs/day, 2 days/week, 6–8 PM)",
       location: "SJPS Siruseri (offline) + Online",
       prices: ["₹65,000", "₹65,000"],
     },
@@ -299,10 +299,10 @@ export const edgeTesting = [
 export const edgeFees = {
   columns: ["Grade 11", "Grade 12"],
   rows: [
-    { mode: "Online", location: "Live interactive streaming", prices: ["₹50,000", "₹40,000"] },
+    { mode: "Online", location: "Live streaming — 2 hrs/day, 3 days/week, 6–8 PM", prices: ["₹50,000", "₹40,000"] },
     { mode: "Integrated (within school hours)", location: "BHIS Kelambakkam", prices: ["₹100,000", "₹100,000"] },
     {
-      mode: "Hybrid — Sunday 6 hrs + weekday online (2 hrs/day, 3 days, 6–8 PM)",
+      mode: "Hybrid — Sunday 6 hrs + weekday online (2 hrs/day, 3 days/week, 6–8 PM)",
       location: "SJPS Siruseri (offline) + Online",
       prices: ["₹80,000", "₹75,000"],
     },
@@ -339,7 +339,6 @@ export const onlineFeatures = [
 
 /* Why Edutattva (home) */
 export const whyEdutattva = [
-  { title: "Small Batches", desc: "Limited students per batch so every learner is seen, heard and guided." },
   { title: "Personal Mentorship", desc: "One-on-one mentoring, feedback and correction strategies for each student." },
   { title: "Nearly Double the* Contact Hours", desc: "Nearly double the effective academic contact hours of conventional programs.", combined: true },
   { title: "Powerful Testing Ecosystem", desc: "Continuous benchmarking, precise analysis and performance improvement." },
@@ -356,7 +355,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Small batches meant my doubts never piled up. The weekly tests and one-on-one analysis kept me honest about where I actually stood before JEE.",
+      "The weekly tests and one-on-one analysis kept me honest about where I actually stood before JEE — my doubts never piled up.",
     name: "Edu Edge student",
     role: "Grade 12",
   },
@@ -377,10 +376,6 @@ export const admissionSteps = [
 ];
 
 export const faqs = [
-  {
-    q: "How large are the batches?",
-    a: "Batches are deliberately kept small so every student receives personal attention, mentoring and near-double the effective contact hours of conventional programs.",
-  },
   {
     q: "What delivery modes are available?",
     a: "Integrated (within school hours), Offline (after school hours), Hybrid (weekday online + Sunday offline) and Online (live interactive streaming). Availability varies by program and grade.",

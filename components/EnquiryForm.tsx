@@ -5,13 +5,6 @@ import { site } from "@/lib/data";
 import Icon from "./Icon";
 
 const grades = ["Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"];
-const programOptions = [
-  "Foundation (6–8)",
-  "Edu Ignite (9–10)",
-  "Edu Edge (11–12)",
-  "Edu Edge Online (XI)",
-  "Not sure yet",
-];
 const modeOptions = ["Integrated", "Offline", "Hybrid", "Online", "Not sure yet"];
 
 const field =
@@ -207,11 +200,19 @@ export default function EnquiryForm({ compact = false }: { compact?: boolean }) 
                 <option value="" disabled>
                   Select program
                 </option>
-                {programOptions.map((p) => (
-                  <option key={p} value={p}>
-                    {p}
-                  </option>
-                ))}
+                <option value="Foundation (6–8)">Foundation (6–8)</option>
+                <optgroup label="Edu Ignite (9–10)">
+                  <option value="Edu Ignite (9–10) — JEE">Edu Ignite (9–10) — JEE</option>
+                  <option value="Edu Ignite (9–10) — NEET">Edu Ignite (9–10) — NEET</option>
+                  <option value="Edu Ignite (9–10) — Both">Edu Ignite (9–10) — Both (JEE &amp; NEET)</option>
+                </optgroup>
+                <optgroup label="Edu Edge (11–12)">
+                  <option value="Edu Edge (11–12) — JEE">Edu Edge (11–12) — JEE</option>
+                  <option value="Edu Edge (11–12) — NEET">Edu Edge (11–12) — NEET</option>
+                  <option value="Edu Edge (11–12) — Both">Edu Edge (11–12) — Both (JEE &amp; NEET)</option>
+                </optgroup>
+                <option value="Edu Edge Online (XI)">Edu Edge Online (XI)</option>
+                <option value="Not sure yet">Not sure yet</option>
               </select>
               {errors.program && (
                 <p id="err-program" className={errCls} role="alert">

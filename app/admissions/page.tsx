@@ -11,7 +11,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Admissions 2026–27 — Book a Free Counselling Session",
   description:
-    "Admissions open for 2026–27. Follow the Edutattva journey: Enquiry → Counselling → Assessment → Enrollment. Scholarships & installments available. Book your free counselling session.",
+    "Admissions open for 2026–27. Follow the Edutattva journey: Enquiry → Counselling → Assessment → Enrollment. Installment options available. Book your free counselling session.",
 };
 
 export default function AdmissionsPage() {
@@ -81,10 +81,10 @@ export default function AdmissionsPage() {
                   <Icon name="handshake" size={24} />
                 </span>
                 <div>
-                  <h3 className="text-[1.05rem]">Scholarships &amp; installments</h3>
+                  <h3 className="text-[1.05rem]">Flexible installments</h3>
                   <p className="mt-1 text-[0.9rem] text-muted">
                     Installment options are available for Edu Ignite (9–10) and Edu Edge (11–12). Ask
-                    our counsellor about current scholarship and fee plans.
+                    our counsellor about the current fee plans.
                   </p>
                 </div>
               </div>

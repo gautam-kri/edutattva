@@ -2,6 +2,7 @@ import Link from "next/link";
 import { nav, site } from "@/lib/data";
 import Logo from "./Logo";
 import Icon from "./Icon";
+import EmailComposer from "./EmailComposer";
 
 const programLinks = nav.find((n) => n.label === "Programs")?.children ?? [];
 
@@ -56,13 +57,7 @@ export default function Footer() {
             >
               <Icon name="instagram" size={18} />
             </a>
-            <a
-              href="mailto:enquiries@edutattva.com"
-              aria-label="Email enquiries@edutattva.com"
-              className={socialCls}
-            >
-              <Icon name="mail" size={18} />
-            </a>
+            <EmailComposer className={socialCls} />
             <a
               href={`tel:${site.phoneDial}`}
               aria-label={`Call ${site.phoneDisplay}`}

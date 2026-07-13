@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { testimonials, trustLine } from "@/lib/data";
+import { trustLine } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
-import Reveal from "@/components/Reveal";
 import ResultsTabs from "@/components/ResultsTabs";
+import VideoTestimonials from "@/components/VideoTestimonials";
 import CTABand from "@/components/CTABand";
 import Icon from "@/components/Icon";
 
@@ -35,9 +35,9 @@ export default function ResultsPage() {
               <Icon name="trophy" size={24} />
             </span>
             <p className="text-[0.98rem] text-navy">
-              <strong className="font-bold">Built for real data.</strong> The rank cards and tabs
-              below are placeholders — student photos, AIR ranks, exam names and years will populate
-              here as each result season closes.
+              <strong className="font-bold">Built for real data.</strong> The year-wise statistics
+              and video testimonials below are placeholders — top ranks, selections and student
+              stories will populate here as each result season closes.
             </p>
           </div>
         </div>
@@ -66,23 +66,17 @@ export default function ResultsPage() {
         </div>
       </section>
 
-      {/* Testimonial wall */}
+      {/* Video testimonials */}
       <section className="section">
         <div className="container-x">
-          <SectionHeading center eyebrow="Testimonial Wall" title="In the words of our families" />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal key={i} delay={i * 80} className="h-full">
-                <figure className="card h-full p-7">
-                  <Icon name="quote" size={34} className="text-gold" />
-                  <blockquote className="mt-3 leading-relaxed text-navy">“{t.quote}”</blockquote>
-                  <figcaption className="mt-5 border-t border-sky-200 pt-4">
-                    <span className="block font-bold text-navy">{t.name}</span>
-                    <span className="text-sm text-muted">{t.role}</span>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
+          <SectionHeading
+            center
+            eyebrow="Video Testimonials"
+            title="Stories from our families"
+            intro="Video testimonials from parents and students will live in this space."
+          />
+          <div className="mt-10">
+            <VideoTestimonials />
           </div>
         </div>
       </section>

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Edu Ignite: Classroom & Integrated JEE/NEET foundation program for Grade 9 & 10. Integrated ₹80,000/grade or Hybrid ₹65,000. Installments available. SJPS Siruseri & BHIS Kelambakkam.",
 };
 
-const whyIcons: IconName[] = ["clock", "layers", "brain", "stopwatch", "trophy", "mentor"];
+const whyIcons: IconName[] = ["cap", "layers", "globe", "notes", "pin", "handshake"];
 const whyTones = ["royal", "gold", "royal", "crimson", "gold", "royal"] as const;
 
 export default function EduIgnitePage() {
@@ -26,7 +26,7 @@ export default function EduIgnitePage() {
         title={
           <>
             Classroom & Integrated{" "}
-            <span className="hl-gold">JEE / NEET foundation</span> for Grade 9 &amp; 10
+            <span className="hl-gold">JEE / NEET foundation</span>{" "}for Grade 9 &amp; 10
           </>
         }
         subtitle="The head start that compounds. Begin building real JEE/NEET foundations in Class IX — while Board preparation and competitive prep move together, not against each other."
@@ -44,9 +44,9 @@ export default function EduIgnitePage() {
         <div className="container-x">
           <SectionHeading
             center
-            eyebrow="Why Start in Class IX"
-            title="Two years of advantage you can't get back later"
-            intro="Students who begin early build depth, temperament and consistency that late starters spend years trying to catch up on."
+            eyebrow="The Edu Ignite Program"
+            title="What Edu Ignite gives Grade 9 &amp; 10"
+            intro="Classroom and Integrated JEE/NEET foundation preparation, available across two campuses in the mode that fits your child."
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {igniteWhy.map((w, i) => (

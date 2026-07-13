@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Edutattva Classes — Where Fundamentals Become Excellence",
     description:
-      "IIT-JEE | NEET | Foundation programs for Class 6–12 in Chennai. Small batches, real mentorship, powerful testing — quality at an affordable fee.",
+      "IIT-JEE | NEET | Foundation programs for Class 6–12 in Chennai. Real mentorship, powerful testing and quality at an affordable fee.",
     url: "/",
     siteName: "Edutattva Classes",
     locale: "en_IN",

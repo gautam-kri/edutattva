@@ -25,7 +25,7 @@ export default function AboutPage() {
             Built on experience. <span className="hl-gold">Driven by purpose.</span>
           </>
         }
-        subtitle="Edutattva isn't another coaching initiative. It was built on a deep realisation — after decades in academic leadership — that quality education, structured systems and personal mentorship are often inaccessible to many deserving students."
+        subtitle="Edutattva isn't another coaching initiative. It was built on the realization that quality education, structured systems and personal mentorship are often inaccessible to many deserving students."
       />
 
       {/* Vision & Mission */}
@@ -37,7 +37,7 @@ export default function AboutPage() {
               <h2 className="mt-5 text-[1.6rem]">Vision</h2>
               <p className="mt-3 leading-relaxed text-muted">
                 To redefine competitive exam preparation through systems, mentorship and
-                precision-driven learning — making high-quality IIT-JEE and NEET preparation more
+                precision-driven learning, making high-quality IIT-JEE and NEET preparation more
                 accessible, structured and student-centric.
               </p>
               <p className="mt-3 leading-relaxed text-muted">
@@ -53,7 +53,7 @@ export default function AboutPage() {
               <h2 className="mt-5 text-[1.6rem]">Mission</h2>
               <p className="mt-3 leading-relaxed text-muted">
                 To build a performance-driven academic ecosystem that nurtures every student with
-                clarity, discipline, strategy and personal care — helping them achieve their optimum
+                clarity, discipline, strategy and personal care, helping them achieve their optimum
                 potential in IIT-JEE, NEET and beyond.
               </p>
               <ul className="check-list mt-4">
@@ -62,7 +62,7 @@ export default function AboutPage() {
                   "Continuously evolving with the latest exam trends",
                   "Building exam temperament, confidence and consistency",
                   "Structured mentoring and precise performance analysis",
-                  "Quality systems, made affordable — without compromise",
+                  "Quality systems, made affordable without compromise",
                 ].map((m) => (
                   <li key={m}>{m}</li>
                 ))}
@@ -79,11 +79,13 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Who Are We?"
               title="A singular vision, shaped over decades"
-              intro="As co-founders, we have spent years working closely with students across diverse academic environments — understanding not just how they learn, but where they struggle, lose direction and fall short despite effort."
+              intro="As co-founders, we have spent years working closely with students across diverse academic environments, understanding not just how they learn, but where they struggle, lose direction and fall short despite effort."
             />
             <p className="mt-5 rounded-2xl border-l-4 border-gold bg-white p-5 text-[1.05rem] font-semibold leading-relaxed text-navy">
-              To make high-quality, result-driven academic systems more accessible, more structured
-              and more personal.
+              We
+              <sup className="align-super text-[0.55em] font-normal text-gold-600">*</sup> make
+              high-quality, result-driven academic systems more accessible, more structured and more
+              personal.
             </p>
             <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-sm font-semibold text-royal">
               <span>Nishant Tripathi (MNT Sir)</span>
@@ -135,7 +137,7 @@ export default function AboutPage() {
             <div className="space-y-4 text-[1.02rem] leading-relaxed text-muted">
               <p>
                 Every year, thousands of students prepare seriously for IIT-JEE and NEET. Yet many
-                fail to achieve the results they are capable of — not because they lack intelligence
+                fail to achieve the results they are capable of, not because they lack intelligence
                 or hard work, but because competitive exams demand far more than syllabus completion.
               </p>
               <p>
@@ -146,7 +148,7 @@ export default function AboutPage() {
                 below potential.
               </p>
               <p className="font-semibold text-navy">
-                Success is not about studying harder. It is about preparing smarter — building exam
+                Success is not about studying harder. It is about preparing smarter, building exam
                 temperament, analysing mistakes scientifically and continuously refining performance
                 through the right guidance and systems.
               </p>
@@ -167,7 +169,7 @@ export default function AboutPage() {
                 The E4 Engine: where <span className="hl-gold">learning becomes performance</span>
               </>
             }
-            intro="Our proprietary framework — the Edutattva Execution Engine — ensures every concept is understood, applied, tested and perfected before moving forward. Each stage builds not just knowledge, but competence, confidence and consistency."
+            intro="Our proprietary framework, the Edutattva Execution Engine, ensures every concept is understood, applied, tested and perfected before moving forward. Each stage builds not just knowledge, but competence, confidence and consistency."
           />
           <div className="mt-10">
             <E4Loop />
@@ -217,7 +219,7 @@ export default function AboutPage() {
               <li>Individual doubt support and correction strategies</li>
               <li>Motivation, discipline and exam temperament guidance</li>
               <li>
-                Nearly double the effective academic contact hours of conventional programs — while
+                Nearly double the effective academic contact hours of conventional programs, while
                 staying more affordable
               </li>
             </ul>
