@@ -1,17 +1,13 @@
-# Brand fonts
+# Brand fonts (installed)
 
-Drop the licensed font files here with these **exact** filenames and the site will
-pick them up automatically (they're wired via `@font-face` in `app/globals.css`).
-`.woff2` is preferred; `.otf`/`.ttf` also work if you rename the extension in the
-`src` list. Until the files are present, the site falls back to Archivo / Inter /
-Barlow Condensed so nothing looks broken.
+Self-hosted brand fonts, wired via `@font-face` in `app/globals.css`:
 
-| Font (role)                                   | Expected file(s)                                            |
-| --------------------------------------------- | ----------------------------------------------------------- |
-| **Agrandir** — all titles / headlines         | `agrandir.woff2` (and/or `agrandir.otf`)                    |
-| **Neue Einstellung** — all body text          | `neue-einstellung.woff2` (and/or `.otf`)                    |
-| **FoundationTitlesHand** — navbar wordmark     | `foundation-titles-hand.woff2` (and/or `.otf`)             |
-| **FabioloSmallCap Regular** — navbar tagline   | `fabiolo-smallcap.woff2` (and/or `.otf`)                    |
+| Family (role) | Files (weight) |
+| --- | --- |
+| **Agrandir** — titles | `agrandir-regular.woff2` (400), `agrandir-bold.woff2` (700), `agrandir-heavy.woff2` (800–900) |
+| **Neue Einstellung** — body | `neue-einstellung-{regular,medium,semibold,bold}.woff2` (400/500/600/700) |
+| **FoundationTitlesHand** — navbar/footer wordmark | `foundation-titles-hand-{regular,semibold}.woff2` (400 / 600–900) |
+| **FabioloSmallCap Regular** — navbar tagline | `fabiolo-smallcap.woff2` (400) |
 
-If a family ships as multiple weight files, add extra `@font-face` blocks in
-`app/globals.css` (one per weight) pointing at each file.
+To add/replace a weight, drop the `.woff2` in here and add/adjust the matching
+`@font-face` block in `app/globals.css`.
