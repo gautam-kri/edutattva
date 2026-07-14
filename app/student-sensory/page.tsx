@@ -5,7 +5,7 @@ import CTABand from "@/components/CTABand";
 import Icon from "@/components/Icon";
 
 export const metadata: Metadata = {
-  title: "Student Sensory — Coming Soon",
+  title: "Student Portal — Coming Soon",
   description:
     "The Edutattva Student Sensory portal is on its way — a dedicated space for students to learn, practise, attend live classes and track their progress.",
 };
@@ -14,7 +14,7 @@ export default function StudentSensoryPage() {
   return (
     <>
       <PageHero
-        eyebrow="Student Sensory"
+        eyebrow="Student Portal"
         title={
           <>
             The student portal, <span className="hl-gold">coming soon</span>

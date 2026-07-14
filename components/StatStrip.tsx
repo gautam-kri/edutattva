@@ -52,12 +52,12 @@ function StatItem({
         style={{ fontFamily: "var(--font-condensed)" }}
       >
         {n.toLocaleString("en-IN")}
-        <span style={{ color: "var(--color-gold)" }}>{suffix}</span>
         {combined && (
           <sup className="align-super text-[0.32em] font-normal text-white/35" aria-hidden="true">
             *
           </sup>
         )}
+        <span style={{ color: "var(--color-gold)" }}>{suffix}</span>
       </div>
       <div className="mt-2 text-[0.82rem] font-medium uppercase tracking-[0.1em] text-white/70">
         {label}

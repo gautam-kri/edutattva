@@ -247,7 +247,7 @@ export default function AboutPage() {
         <div className="container-x">
           <div className="mx-auto max-w-3xl rounded-3xl border border-sky-200 bg-white p-10 text-center shadow-[var(--shadow-card)]">
             <Icon name="quote" size={44} className="mx-auto text-gold" />
-            <p className="mt-4 text-[clamp(1.4rem,3vw,2rem)] font-extrabold leading-tight text-navy" style={{ fontFamily: "var(--font-display)" }}>
+            <p className="mt-4 text-[clamp(1.4rem,3vw,2rem)] font-bold leading-tight text-navy" style={{ fontFamily: "var(--font-display)" }}>
               Edutattva is not just what we teach. It is what we believe education should be.
             </p>
           </div>

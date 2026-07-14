@@ -26,7 +26,7 @@ export default function Logo({ variant = "full", theme = "dark", className = "" 
       />
 
       {variant === "full" && (
-        <span className="flex flex-col leading-none">
+        <span className="flex translate-y-[6px] flex-col leading-none">
           <span
             className="text-[1.32rem] font-bold leading-none tracking-tight"
             style={{ color: wordColor, fontFamily: "var(--font-wordmark)" }}

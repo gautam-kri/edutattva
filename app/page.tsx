@@ -143,12 +143,10 @@ export default function HomePage() {
           {/* Right — faculty trio, made grand */}
           <div className="anim-fadeup delay-3">
             <div className="grid grid-cols-3 gap-3 sm:gap-4">
-              {facultySpotlight.map((f, idx) => (
+              {facultySpotlight.map((f) => (
                 <div
                   key={f.name}
-                  className={`rounded-2xl bg-white/[0.07] p-2.5 shadow-xl backdrop-blur-sm ${
-                    idx === 1 ? "-translate-y-6 ring-2 ring-gold/50" : "ring-1 ring-white/10"
-                  }`}
+                  className="rounded-2xl bg-white/[0.07] p-2.5 shadow-xl ring-1 ring-white/10 backdrop-blur-sm"
                 >
                   <Photo
                     src={f.photo}
@@ -184,9 +182,9 @@ export default function HomePage() {
                   80+
                 </span>
                 <span className="text-[0.72rem] font-semibold uppercase leading-tight text-white/90">
-                  Years Combined
+                  Years of
                   <br />
-                  Faculty Experience
+                  Academic Experience
                 </span>
               </span>
             </div>
@@ -333,7 +331,6 @@ export default function HomePage() {
               </div>
             </Reveal>
           </div>
-          <p className="mt-6 text-[0.7rem] text-muted/40">*Combined across faculty.</p>
         </div>
       </section>
 

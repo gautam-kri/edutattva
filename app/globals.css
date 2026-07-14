@@ -89,7 +89,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.015em;
     color: var(--color-navy);
@@ -228,7 +228,7 @@
   /* Signature crimson experience badge */
   .exp-badge {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0.4rem;
     background: var(--color-crimson);
     color: #fff;

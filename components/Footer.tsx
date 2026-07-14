@@ -72,7 +72,7 @@ export default function Footer() {
             className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-gold"
           >
             <Icon name="window" size={16} className="text-gold" />
-            Student Sensory
+            Student Portal
           </Link>
         </div>
 

@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { site } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
-import EnquiryForm from "@/components/EnquiryForm";
 import Icon, { type IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Contact — Call, WhatsApp or Visit Us in Chennai",
   description:
-    "Contact Edutattva Classes: call 7075 7075 40, WhatsApp us, or visit our SJPS Siruseri and BHIS Kelambakkam campuses. Send a quick enquiry and we'll get right back to you.",
+    "Contact Edutattva Classes: call 7075 7075 40, WhatsApp us, email enquiries@edutattva.com, or visit our SJPS Siruseri and BHIS Kelambakkam campuses.",
 };
 
 const methods: { icon: IconName; label: string; value: string; href: string; tone: string }[] = [
   { icon: "phone", label: "Call us", value: site.phoneDisplay, href: `tel:${site.phoneDial}`, tone: "royal" },
   { icon: "whatsapp", label: "WhatsApp", value: "Chat with us", href: site.whatsapp, tone: "lime" },
-  { icon: "globe", label: "Website", value: site.website, href: `https://${site.website}`, tone: "gold" },
+  { icon: "mail", label: "Email", value: "enquiries@edutattva.com", href: "mailto:enquiries@edutattva.com", tone: "gold" },
 ];
 
 const campuses = [
@@ -59,8 +59,8 @@ export default function ContactPage() {
               <Reveal key={m.label} delay={i * 80} className="h-full">
                 <a
                   href={m.href}
-                  target={m.icon === "phone" ? undefined : "_blank"}
-                  rel={m.icon === "phone" ? undefined : "noopener noreferrer"}
+                  target={m.icon === "whatsapp" ? "_blank" : undefined}
+                  rel={m.icon === "whatsapp" ? "noopener noreferrer" : undefined}
                   className="card card-hover flex h-full items-center gap-4 p-6"
                 >
                   <span className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl ${toneBg[m.tone]}`}>
@@ -142,9 +142,6 @@ export default function ContactPage() {
                   <span className="font-semibold text-navy">[ Closed ]</span>
                 </li>
               </ul>
-              <p className="mt-4 text-[0.8rem] text-muted">
-                Timings are placeholders — confirm exact hours with the front office.
-              </p>
             </div>
 
             <div className="mt-6 rounded-2xl bg-navy p-6 text-white">
@@ -161,12 +158,15 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div>
-            <h2 className="text-[1.5rem]">Send a quick enquiry</h2>
-            <p className="mt-2 text-muted">Drop your details and we&apos;ll call you back.</p>
-            <div className="mt-5">
-              <EnquiryForm compact />
-            </div>
+          <div className="flex flex-col justify-center rounded-2xl bg-sky p-8 text-center">
+            <h2 className="text-[1.5rem]">Ready to enquire?</h2>
+            <p className="mx-auto mt-2 max-w-sm text-muted">
+              Fill in our enquiry form and our counselling team will help you choose the right
+              program, grade and mode.
+            </p>
+            <Link href="/admissions#enquiry" className="btn btn-gold mx-auto mt-6">
+              Go to the enquiry form <Icon name="arrow" size={18} />
+            </Link>
           </div>
         </div>
       </section>
