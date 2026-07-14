@@ -120,12 +120,10 @@ export default function Header() {
         <div className="flex items-center gap-2 lg:hidden">
           <Link
             href="/admissions#enquiry"
-            className="inline-flex h-10 items-center gap-1.5 rounded-full bg-gold px-4 text-[0.9rem] font-bold text-navy shadow-[0_8px_18px_-8px_rgba(245,183,0,0.7)] transition-colors hover:bg-[#ffc61a]"
-            style={{ fontFamily: "var(--font-display)" }}
+            className="grid h-10 w-10 place-items-center rounded-full bg-gold text-navy shadow-[0_8px_18px_-8px_rgba(245,183,0,0.7)] transition-colors hover:bg-[#ffc61a]"
             aria-label="Make an enquiry"
           >
-            <Icon name="mail" size={17} />
-            Enquiry
+            <Icon name="clipboard" size={20} />
           </Link>
           <button
             type="button"

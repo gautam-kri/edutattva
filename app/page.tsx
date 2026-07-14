@@ -289,12 +289,12 @@ export default function HomePage() {
           />
           {/* MNT & PSOM enlarged on top; CRK, Rahul & Bhargava (his native portrait) beneath, aligned */}
           <div className="mx-auto mt-10 max-w-3xl space-y-5">
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid gap-5 sm:grid-cols-2">
               {facultyTop.map((f, i) => (
                 <FacultyCard key={f.name} f={f} delay={i * 90} aspect="aspect-[4/5]" />
               ))}
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid gap-4 sm:grid-cols-3">
               {facultyBottom.map((f, i) => (
                 <FacultyCard key={f.name} f={f} delay={i * 90} aspect="aspect-[308/546]" />
               ))}
