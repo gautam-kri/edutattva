@@ -23,8 +23,8 @@ import Icon, { type IconName } from "@/components/Icon";
 
 const whyIcons: IconName[] = ["mentor", "clock", "chart", "handshake"];
 
-// Homepage faculty pyramid: PSOM & MNT on top, the other three beneath.
-const facultyTop = [leadership[1], leadership[0]]; // Sourav (PSOM), Nishant (MNT)
+// Homepage faculty pyramid: MNT & PSOM enlarged on top, the other three beneath.
+const facultyTop = [leadership[0], leadership[1]]; // Nishant (MNT), Sourav (PSOM)
 const facultyBottom = [leadership[2], leadership[3], leadership[4]]; // CRK, Rahul, Bhargava
 
 /** Renders a string, turning any "*" into a very subtle superscript footnote marker. */
@@ -46,23 +46,31 @@ function MarkedText({ text }: { text: string }) {
   );
 }
 
-function FacultyCard({ f, delay }: { f: (typeof leadership)[number]; delay: number }) {
+function FacultyCard({
+  f,
+  delay,
+  aspect = "aspect-[4/5]",
+}: {
+  f: (typeof leadership)[number];
+  delay: number;
+  aspect?: string;
+}) {
   return (
     <Reveal delay={delay} className="h-full">
       <div className="card card-hover h-full overflow-hidden">
         <Photo
           src={f.photo}
           alt={`${f.name} — ${f.subject}`}
-          aspect="aspect-[4/3]"
+          aspect={aspect}
           rounded="rounded-none"
           position="object-top"
         />
-        <div className="relative p-6">
-          <div className="absolute -top-5 right-6">
+        <div className="relative p-5">
+          <div className="absolute -top-5 right-5">
             <ExpBadge years={f.years} />
           </div>
-          <h3 className="text-[1.25rem]">{f.name}</h3>
-          <p className="mt-1 font-semibold text-royal">
+          <h3 className="text-[1.2rem]">{f.name}</h3>
+          <p className="mt-1 text-[0.95rem] font-semibold text-royal">
             {f.subject} · {f.alias}
           </p>
         </div>
@@ -184,7 +192,7 @@ export default function HomePage() {
                 <span className="text-[0.72rem] font-semibold uppercase leading-tight text-white/90">
                   Years of
                   <br />
-                  Academic Experience
+                  Academic Experience*
                 </span>
               </span>
             </div>
@@ -279,16 +287,16 @@ export default function HomePage() {
             }
             intro="Academic minds behind years of IIT-JEE & NEET results at FIITJEE & FGS."
           />
-          {/* Pyramid: PSOM & MNT on top, the other three beneath (PSOM/MNT stay first on mobile) */}
-          <div className="mt-10 space-y-6">
-            <div className="mx-auto grid max-w-2xl grid-cols-2 gap-6">
+          {/* MNT & PSOM enlarged on top; CRK, Rahul & Bhargava (his native portrait) beneath, aligned */}
+          <div className="mx-auto mt-10 max-w-3xl space-y-5">
+            <div className="grid grid-cols-2 gap-5">
               {facultyTop.map((f, i) => (
-                <FacultyCard key={f.name} f={f} delay={i * 90} />
+                <FacultyCard key={f.name} f={f} delay={i * 90} aspect="aspect-[4/5]" />
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+            <div className="grid grid-cols-3 gap-4">
               {facultyBottom.map((f, i) => (
-                <FacultyCard key={f.name} f={f} delay={i * 90} />
+                <FacultyCard key={f.name} f={f} delay={i * 90} aspect="aspect-[308/546]" />
               ))}
             </div>
           </div>

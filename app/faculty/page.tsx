@@ -38,7 +38,7 @@ export default function FacultyPage() {
                     <Photo
                       src={l.photo}
                       alt={`${l.name} — ${l.title}`}
-                      aspect="aspect-[4/3]"
+                      aspect="aspect-[4/5]"
                       rounded="rounded-none"
                       position="object-top"
                     />
