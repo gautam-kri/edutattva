@@ -9,13 +9,13 @@ import Icon, { type IconName } from "@/components/Icon";
 export const metadata: Metadata = {
   title: "Contact — Call, WhatsApp or Visit Us in Chennai",
   description:
-    "Contact Edutattva Classes: call 7075 7075 40, WhatsApp us, email enquiries@edutattva.com, or visit our SJPS Siruseri and BHIS Kelambakkam campuses.",
+    "Contact Edutattva Classes: call 7075 7075 40, WhatsApp us, email enquiries.edutattva@gmail.com, or visit our SJPS Siruseri and BHIS Kelambakkam campuses.",
 };
 
 const methods: { icon: IconName; label: string; value: string; href: string; tone: string }[] = [
   { icon: "phone", label: "Call us", value: site.phoneDisplay, href: `tel:${site.phoneDial}`, tone: "royal" },
   { icon: "whatsapp", label: "WhatsApp", value: "Chat with us", href: site.whatsapp, tone: "lime" },
-  { icon: "mail", label: "Email", value: "enquiries@edutattva.com", href: "mailto:enquiries@edutattva.com", tone: "gold" },
+  { icon: "mail", label: "Email", value: site.social.email, href: `mailto:${site.social.email}`, tone: "gold" },
 ];
 
 const campuses = [
@@ -131,7 +131,7 @@ export default function ContactPage() {
               <ul className="mt-4 space-y-2.5 text-[0.95rem]">
                 <li className="flex justify-between border-b border-sky-200 pb-2.5">
                   <span className="text-muted">Monday – Saturday</span>
-                  <span className="font-semibold text-navy">[ 9:00 AM – 7:00 PM ]</span>
+                  <span className="font-semibold text-navy">9:00 AM – 8:00 PM</span>
                 </li>
                 <li className="flex justify-between border-b border-sky-200 pb-2.5">
                   <span className="text-muted">Sunday</span>

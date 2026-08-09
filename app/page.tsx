@@ -101,7 +101,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="container-x relative grid items-center gap-12 py-16 lg:grid-cols-[1fr_1fr] lg:py-24">
+        <div className="container-x relative grid items-center gap-12 py-16 lg:grid-cols-[0.82fr_1.18fr] lg:py-24">
           {/* Left */}
           <div>
             <div className="anim-fadeup flex flex-wrap items-center gap-2.5">
@@ -109,8 +109,10 @@ export default function HomePage() {
               <span className="chip chip-lime">Class 6 to 12</span>
             </div>
 
-            <h1 className="anim-fadeup delay-1 mt-6 text-[clamp(2.4rem,6vw,4.2rem)] text-white">
-              Where Fundamentals Become <span className="hl-gold">Excellence</span>
+            <h1 className="anim-fadeup delay-1 mt-6 text-[clamp(2rem,5.2vw,4.2rem)] text-white">
+              Where Fundamentals
+              <br />
+              Become <span className="hl-gold">Excellence</span>
             </h1>
 
             <p
@@ -154,7 +156,7 @@ export default function HomePage() {
               {facultySpotlight.map((f) => (
                 <div
                   key={f.name}
-                  className="rounded-2xl bg-white/[0.07] p-2.5 shadow-xl ring-1 ring-white/10 backdrop-blur-sm"
+                  className="rounded-2xl bg-white/[0.07] p-3 shadow-xl ring-1 ring-white/10 backdrop-blur-sm sm:p-3.5"
                 >
                   <Photo
                     src={f.photo}
@@ -164,13 +166,13 @@ export default function HomePage() {
                     position="object-top"
                     priority
                   />
-                  <div className="px-1 pb-1 pt-3 text-center">
-                    <p className="text-[0.9rem] font-bold leading-tight text-white">{f.name}</p>
-                    <p className="mt-0.5 text-[0.68rem] uppercase tracking-wide text-white/60">
+                  <div className="px-1 pb-1 pt-3.5 text-center">
+                    <p className="text-[1rem] font-bold leading-tight text-white">{f.name}</p>
+                    <p className="mt-1 text-[0.72rem] uppercase tracking-wide text-white/60">
                       {f.role}
                     </p>
                     <span
-                      className="mt-2 inline-block rounded-full bg-crimson px-2.5 py-1 text-[0.72rem] font-bold text-white"
+                      className="mt-2.5 inline-block rounded-full bg-crimson px-4 py-1.5 text-[1rem] font-extrabold leading-none text-white shadow-[0_10px_22px_-10px_rgba(200,16,46,0.8)]"
                       style={{ fontFamily: "var(--font-condensed)" }}
                     >
                       {f.years} YRS
@@ -178,23 +180,6 @@ export default function HomePage() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Combined-experience badge — sits below the cards so it never overlaps them */}
-            <div className="mt-7 flex justify-center">
-              <span className="anim-float flex items-center gap-2 rounded-full bg-crimson px-6 py-3 shadow-[0_16px_30px_-10px_rgba(200,16,46,0.7)]">
-                <span
-                  className="text-2xl font-extrabold leading-none text-white"
-                  style={{ fontFamily: "var(--font-condensed)" }}
-                >
-                  80+
-                </span>
-                <span className="text-[0.72rem] font-semibold uppercase leading-tight text-white/90">
-                  Years of
-                  <br />
-                  Academic Experience*
-                </span>
-              </span>
             </div>
           </div>
         </div>
@@ -234,7 +219,7 @@ export default function HomePage() {
             }
             intro="Structured programs aligned to every stage of a student's academic growth — with continuity, progression and mentorship built in."
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {programs.map((p, i) => (
               <Reveal key={p.code} delay={i * 80} className="h-full">
                 <ProgramCard

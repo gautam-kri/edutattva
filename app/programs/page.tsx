@@ -113,7 +113,7 @@ export default function ProgramsPage() {
                 Four ways to learn — <span className="hl-gold">your choice of fit</span>
               </>
             }
-            intro="Availability varies by program and grade. Every mode includes Edutattva study material, online testing platform access and all taxes."
+            intro="Each mode is a named tier of the program — Integrated is Edge+ / Ignite+, Hybrid is Edu Edge / Edu Ignite, and Online is Edge Online / Ignite Online. Availability varies by program and grade."
           />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {modes.map((m, i) => (
@@ -123,6 +123,12 @@ export default function ProgramsPage() {
                     <Icon name={modeIcons[i]} size={24} />
                   </span>
                   <h3 className="mt-4 text-[1.15rem] text-white">{m.name}</h3>
+                  <p
+                    className="mt-1 text-[0.78rem] font-bold uppercase tracking-[0.08em] text-gold"
+                    style={{ fontFamily: "var(--font-condensed)" }}
+                  >
+                    {m.tier}
+                  </p>
                   <p className="mt-2 text-[0.92rem] leading-relaxed text-white/70">{m.desc}</p>
                 </div>
               </Reveal>
@@ -139,9 +145,7 @@ export default function ProgramsPage() {
             title="Find the right program for your child"
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {programs
-              .filter((p) => !p.slug.includes("#"))
-              .map((p, i) => (
+            {programs.map((p, i) => (
                 <Reveal key={p.code} delay={i * 90} className="h-full">
                   <Link
                     href={p.slug}

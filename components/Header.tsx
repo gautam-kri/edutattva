@@ -12,6 +12,9 @@ function isActive(pathname: string, href: string) {
   return pathname.startsWith(href.split("#")[0]);
 }
 
+/** Ignore the trailing slash `trailingSlash: true` adds, so "/about/" matches "/about". */
+const normalize = (p: string) => p.replace(/\/+$/, "") || "/";
+
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -30,6 +33,24 @@ export default function Header() {
     setOpen(false);
     setProgOpen(false);
   }, [pathname]);
+
+  /**
+   * A link to the page you are already on is inert in Next, so nothing happens.
+   * Send those clicks back to the top of the page instead. In-page anchors
+   * (e.g. /edu-edge#online) keep their normal behaviour.
+   */
+  function samePageToTop(href: string) {
+    return (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (href.includes("#")) return;
+      if (normalize(href) !== normalize(pathname)) return;
+      e.preventDefault();
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      setOpen(false);
+      setProgOpen(false);
+    };
+  }
 
   // Lock scroll + close on Escape while drawer is open.
   useEffect(() => {
@@ -50,7 +71,12 @@ export default function Header() {
       }`}
     >
       <nav className="container-x flex h-[72px] items-center justify-between gap-4" aria-label="Primary">
-        <Link href="/" aria-label="Edutattva Classes — home" className="shrink-0">
+        <Link
+          href="/"
+          aria-label="Edutattva Classes — home"
+          className="shrink-0"
+          onClick={samePageToTop("/")}
+        >
           <Logo />
         </Link>
 
@@ -62,6 +88,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   aria-haspopup="true"
+                  onClick={samePageToTop(item.href)}
                   className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-[0.95rem] font-semibold transition-colors ${
                     isActive(pathname, item.href)
                       ? "text-royal"
@@ -77,6 +104,7 @@ export default function Header() {
                       <li key={c.href}>
                         <Link
                           href={c.href}
+                          onClick={samePageToTop(c.href)}
                           className="flex items-center justify-between rounded-xl px-3 py-2.5 transition-colors hover:bg-sky"
                         >
                           <span className="font-semibold text-navy">{c.label}</span>
@@ -98,6 +126,7 @@ export default function Header() {
               <li key={item.label}>
                 <Link
                   href={item.href}
+                  onClick={samePageToTop(item.href)}
                   className={`rounded-full px-3.5 py-2 text-[0.95rem] font-semibold transition-colors ${
                     isActive(pathname, item.href) ? "text-royal" : "text-navy hover:text-royal"
                   }`}
@@ -189,6 +218,7 @@ export default function Header() {
                           <li key={c.href}>
                             <Link
                               href={c.href}
+                              onClick={samePageToTop(c.href)}
                               className="flex items-center justify-between rounded-lg px-3 py-2.5 text-navy hover:bg-sky"
                             >
                               <span className="font-medium">{c.label}</span>
@@ -207,6 +237,7 @@ export default function Header() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
+                      onClick={samePageToTop(item.href)}
                       className={`block rounded-xl px-4 py-3 text-[1.05rem] font-semibold hover:bg-sky ${
                         isActive(pathname, item.href) ? "text-royal" : "text-navy"
                       }`}

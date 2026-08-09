@@ -28,13 +28,13 @@ export default function FoundationPage() {
   return (
     <>
       <PageHero
-        eyebrow="Foundation · Grades 6–8"
+        eyebrow="Grades 6–8"
         title={
           <>
-            Nurturing thinkers today.{" "}
-            <span className="hl-gold">Shaping achievers tomorrow.</span>
+            Foundation <span className="hl-gold">Program</span>
           </>
         }
+        tagline="Nurturing thinkers today. Shaping achievers tomorrow."
         subtitle="A strong foundation today, a successful future tomorrow. Our foundation program gives your child the academic edge, thinking skills and confidence they need to excel in school, Olympiads and future competitive exams."
       >
         <Link href="/admissions" className="btn btn-gold">

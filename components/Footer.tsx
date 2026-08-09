@@ -2,7 +2,6 @@ import Link from "next/link";
 import { nav, site } from "@/lib/data";
 import Logo from "./Logo";
 import Icon from "./Icon";
-import EmailComposer from "./EmailComposer";
 
 const programLinks = nav.find((n) => n.label === "Programs")?.children ?? [];
 
@@ -37,33 +36,43 @@ export default function Footer() {
             IIT-JEE · NEET · Foundation coaching in Chennai. Mentorship-driven, systems-led and
             genuinely affordable — quality at an affordable fee.
           </p>
-          <div className="mt-5 flex gap-3">
+          {/* Social profiles only — phone, WhatsApp and email live under "Reach Us" */}
+          <div className="mt-5 grid w-fit grid-cols-4 gap-3">
             <a
-              href={site.whatsapp}
+              href={site.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Chat with us on WhatsApp"
-              className={socialCls}
-            >
-              <Icon name="whatsapp" size={18} />
-            </a>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-placeholder="true"
-              aria-label="Instagram (coming soon)"
+              aria-label="Edutattva Classes on Instagram"
               className={socialCls}
             >
               <Icon name="instagram" size={18} />
             </a>
-            <EmailComposer className={socialCls} />
             <a
-              href={`tel:${site.phoneDial}`}
-              aria-label={`Call ${site.phoneDisplay}`}
+              href={site.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Edutattva Classes on LinkedIn"
               className={socialCls}
             >
-              <Icon name="phone" size={18} />
+              <Icon name="linkedin" size={18} />
+            </a>
+            <a
+              href={site.social.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Edutattva Classes on YouTube"
+              className={socialCls}
+            >
+              <Icon name="youtube" size={18} />
+            </a>
+            <a
+              href={site.social.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Edutattva Classes on Facebook"
+              className={socialCls}
+            >
+              <Icon name="facebook" size={18} />
             </a>
           </div>
 
@@ -109,6 +118,23 @@ export default function Footer() {
               <Icon name="phone" size={18} className="mt-0.5 shrink-0 text-gold" />
               <a href={`tel:${site.phoneDial}`} className="hover:text-gold">
                 {site.phoneDisplay}
+              </a>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <Icon name="whatsapp" size={18} className="mt-0.5 shrink-0 text-gold" />
+              <a
+                href={site.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gold"
+              >
+                Chat on WhatsApp
+              </a>
+            </li>
+            <li className="flex items-start gap-2.5">
+              <Icon name="mail" size={18} className="mt-0.5 shrink-0 text-gold" />
+              <a href={`mailto:${site.social.email}`} className="break-all hover:text-gold">
+                {site.social.email}
               </a>
             </li>
             <li className="flex items-start gap-2.5">

@@ -1,17 +1,22 @@
-import { site, whatsappLink, counsellingMessage } from "@/lib/data";
+import Link from "next/link";
+import { site } from "@/lib/data";
 import Icon from "./Icon";
 
-export default function CTABand({
+/**
+ * ALTERNATE CTA — kept for later use.
+ * This is the original band with the "Book Free Counselling" button.
+ * The live band is `CTABand.tsx` (WhatsApp + phone). Swap the import to use this one.
+ */
+export default function CTABandAlt({
   title,
   text,
-  primaryLabel = "Chat on WhatsApp",
-  primaryMessage = counsellingMessage,
+  primaryLabel = "Book Free Counselling",
+  primaryHref = "/admissions",
 }: {
   title: React.ReactNode;
   text?: React.ReactNode;
   primaryLabel?: string;
-  /** Message pre-typed into WhatsApp when the button is tapped. */
-  primaryMessage?: string;
+  primaryHref?: string;
 }) {
   return (
     <section className="section">
@@ -27,16 +32,14 @@ export default function CTABand({
             <h2 className="text-[clamp(1.7rem,3.4vw,2.6rem)] text-white">{title}</h2>
             {text && <p className="mt-4 text-white/80">{text}</p>}
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href={whatsappLink(primaryMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-gold"
-              >
-                <Icon name="whatsapp" size={20} />
+              <Link href={primaryHref} className="btn btn-gold">
                 {primaryLabel}
-              </a>
-              <a href={`tel:${site.phoneDial}`} className="btn btn-ghost">
+              </Link>
+              <a
+                href={`tel:${site.phoneDial}`}
+                className="inline-flex items-center gap-2 text-lg font-bold text-gold"
+                style={{ fontFamily: "var(--font-condensed)" }}
+              >
                 <Icon name="phone" size={20} />
                 {site.phoneDisplay}
               </a>

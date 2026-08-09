@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { site } from "@/lib/data";
 import Icon from "./Icon";
 
-const TO = "enquiries@edutattva.com";
+const TO = site.social.email;
 const field =
   "w-full rounded-xl border border-sky-200 bg-white px-4 py-3 text-[0.95rem] text-ink outline-none transition-colors focus:border-royal focus:ring-2 focus:ring-royal/20 placeholder:text-slate-400";
 

@@ -115,25 +115,23 @@ export default function AboutPage() {
       {/* The Problem */}
       <section className="section">
         <div className="container-x">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <SectionHeading
-                eyebrow="The Problem"
-                title={
-                  <>
-                    Why do most students fail to reach their{" "}
-                    <span className="hl-crimson">true potential?</span>
-                  </>
-                }
-                intro="The challenge is not intelligence. The challenge is execution."
-              />
-              <Photo
-                src="/photos/studying.jpg"
-                alt="A student preparing for competitive exams"
-                aspect="aspect-[4/3]"
-                className="mt-6 hidden lg:block"
-              />
-            </div>
+          <SectionHeading
+            eyebrow="The Problem"
+            title={
+              <>
+                Why do most students fail to reach their{" "}
+                <span className="hl-crimson">true potential?</span>
+              </>
+            }
+            intro="The challenge is not intelligence. The challenge is execution."
+          />
+          {/* Photo stretches to the text height, so neither column trails empty space. */}
+          <div className="mt-10 grid items-stretch gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+            <Photo
+              src="/photos/studying.jpg"
+              alt="A student preparing for competitive exams"
+              className="hidden min-h-[280px] lg:block"
+            />
             <div className="space-y-4 text-[1.02rem] leading-relaxed text-muted">
               <p>
                 Every year, thousands of students prepare seriously for IIT-JEE and NEET. Yet many

@@ -5,12 +5,15 @@ import Eyebrow from "./Eyebrow";
 export default function PageHero({
   eyebrow,
   title,
+  tagline,
   subtitle,
   children,
   align = "left",
 }: {
   eyebrow?: ReactNode;
   title: ReactNode;
+  /** Secondary headline under the program name (program pages). */
+  tagline?: ReactNode;
   subtitle?: ReactNode;
   children?: ReactNode;
   align?: "left" | "center";
@@ -39,6 +42,14 @@ export default function PageHero({
           </Eyebrow>
         )}
         <h1 className="text-[clamp(2.1rem,5vw,3.6rem)] text-white">{title}</h1>
+        {tagline && (
+          <p
+            className="mt-3 text-[clamp(1.15rem,2.4vw,1.6rem)] font-bold leading-snug text-white/85"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            {tagline}
+          </p>
+        )}
         <div className={`mt-5 ${align === "center" ? "mx-auto" : ""} h-1 w-16 rounded-full`} style={{ background: "linear-gradient(90deg,var(--color-gold),var(--color-lime))" }} />
         {subtitle && (
           <p className="mt-6 text-[1.08rem] leading-relaxed text-white/80">{subtitle}</p>

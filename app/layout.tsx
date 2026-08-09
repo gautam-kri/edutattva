@@ -67,7 +67,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${archivo.variable} ${barlow.variable} ${inter.variable}`}>
+    // data-scroll-behavior tells Next to suspend the CSS smooth scroll during route
+    // transitions, so navigating to a new page lands at the top instead of mid-page.
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${archivo.variable} ${barlow.variable} ${inter.variable}`}
+    >
       <body>
         <a
           href="#main"

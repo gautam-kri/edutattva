@@ -41,7 +41,11 @@ export type IconName =
   | "layers"
   | "handshake"
   | "instagram"
+  | "linkedin"
+  | "youtube"
+  | "facebook"
   | "window"
+  | "loop"
   | "play";
 
 const paths: Record<IconName, React.ReactNode> = {
@@ -245,12 +249,39 @@ const paths: Record<IconName, React.ReactNode> = {
       <circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" />
     </>
   ),
+  linkedin: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="4" />
+      <circle cx="7.6" cy="7.4" r="1" fill="currentColor" stroke="none" />
+      <path d="M7.6 10.6V17" />
+      <path d="M11.6 17v-6.4M11.6 13.6a2.6 2.6 0 0 1 5.2 0V17" />
+    </>
+  ),
+  youtube: (
+    <>
+      <rect x="2.5" y="5.5" width="19" height="13" rx="4" />
+      <path d="M10.2 9.4v5.2l4.6-2.6z" fill="currentColor" stroke="none" />
+    </>
+  ),
+  facebook: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="4" />
+      <path d="M14.8 8.2h-1.4a1.6 1.6 0 0 0-1.6 1.6V21M9.8 12.6h4.6" />
+    </>
+  ),
   window: (
     <>
       <rect x="3" y="4" width="18" height="16" rx="2" />
       <path d="M3 9h18" />
       <circle cx="6.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
       <circle cx="9" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+    </>
+  ),
+  loop: (
+    <>
+      <path d="M20 11.5A8 8 0 0 0 6.3 5.8L4 8" />
+      <path d="M4 12.5a8 8 0 0 0 13.7 5.7L20 16" />
+      <path d="M4 4.5V8h3.5M20 19.5V16h-3.5" />
     </>
   ),
   play: <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />,

@@ -335,6 +335,8 @@
     overflow: hidden;
     border-radius: 16px;
     border: 1px solid var(--color-sky-200);
+    /* Own surface, so the zebra striping still reads on tinted sections. */
+    background: #ffffff;
   }
   .fee thead th {
     background: var(--color-navy);

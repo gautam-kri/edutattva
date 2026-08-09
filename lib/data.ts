@@ -11,11 +11,27 @@ export const site = {
   whatsapp: "https://api.whatsapp.com/send?phone=917075707540",
   website: "www.edutattva.com",
   admissions: "Admissions Open 2026–27",
+  /* Social & email handles — single source of truth for the whole site. */
+  social: {
+    instagram: "https://www.instagram.com/edutattva.classes/",
+    linkedin: "https://www.linkedin.com/company/edutattva/",
+    youtube: "https://www.youtube.com/@Edutattvaclasses",
+    facebook: "https://www.facebook.com/Edutattva",
+    email: "enquiries.edutattva@gmail.com",
+  },
   locations: [
     { name: "SJPS St John's", area: "Siruseri" },
     { name: "BHIS Billabong", area: "Kelambakkam" },
   ],
 };
+
+/** WhatsApp deep link, optionally opening the chat with a message pre-typed. */
+export function whatsappLink(message?: string) {
+  return message ? `${site.whatsapp}&text=${encodeURIComponent(message)}` : site.whatsapp;
+}
+
+/** Pre-filled WhatsApp message used by every "book counselling" CTA. */
+export const counsellingMessage = "I'd like to book my free counselling";
 
 export type NavItem = {
   label: string;
@@ -31,9 +47,10 @@ export const nav: NavItem[] = [
     href: "/programs",
     children: [
       { label: "Foundation", href: "/foundation", note: "Grades 6–8" },
-      { label: "Edu Ignite", href: "/edu-ignite", note: "Grades 9–10" },
-      { label: "Edu Edge", href: "/edu-edge", note: "Grades 11–12" },
-      { label: "Edu Edge Online", href: "/edu-edge#online", note: "Grade XI" },
+      { label: "Edu Ignite & Ignite+", href: "/edu-ignite", note: "Grades 9–10" },
+      { label: "Edu Edge & Edge+", href: "/edu-edge", note: "Grades 11–12" },
+      { label: "Ignite Online", href: "/edu-ignite#online", note: "Grades 9–10" },
+      { label: "Edu Edge Online", href: "/edu-edge#online", note: "Grades 11–12" },
     ],
   },
   { label: "Faculty", href: "/faculty" },
@@ -45,7 +62,7 @@ export const nav: NavItem[] = [
 /* Animated stat strip on the home page */
 export const homeStats = [
   { value: 10000, suffix: "+", label: "Students Mentored", combined: true },
-  { value: 80, suffix: "+", label: "Years of Academic Experience" },
+  { value: 80, suffix: "+", label: "Years of Academic Experience", combined: true },
   { value: 250000, suffix: "+", label: "Questions Solved", combined: true },
   { value: 100000, suffix: "+", label: "Hrs of Teaching", combined: true },
 ];
@@ -64,7 +81,7 @@ export const programs = [
   },
   {
     slug: "/edu-ignite",
-    code: "Edu Ignite",
+    code: "Edu Ignite & Ignite+",
     grades: "Grades 9–10",
     pitch: "Classroom & Integrated JEE/NEET foundation — the head start that compounds for years.",
     accent: "royal",
@@ -75,13 +92,6 @@ export const programs = [
     grades: "Grades 11–12",
     pitch: "One system for Boards + JEE (Main & Advanced) + NEET, with a Rank Elevate edge.",
     accent: "gold",
-  },
-  {
-    slug: "/edu-edge#online",
-    code: "Edu Edge Online",
-    grades: "Grade XI",
-    pitch: "The personal attention of a classroom, the convenience of home — just ₹50,000 all-inclusive.",
-    accent: "crimson",
   },
 ] as const;
 
@@ -156,12 +166,28 @@ export const leadershipStrengths = [
   "Strong expertise in curriculum design and execution",
 ];
 
-/* Delivery modes */
+/* Delivery modes — each mode *is* a tier of the Edge / Ignite programs. */
 export const modes = [
-  { name: "Integrated", desc: "Classes conducted within school hours — no duplication of effort." },
-  { name: "Offline", desc: "Structured coaching conducted after school hours." },
-  { name: "Hybrid", desc: "Weekday online classes + Sunday offline classes." },
-  { name: "Online", desc: "Live, interactive streaming classes." },
+  {
+    name: "Integrated",
+    tier: "Edge+ · Ignite+",
+    desc: "Classes conducted within school hours — no duplication of effort.",
+  },
+  {
+    name: "Offline",
+    tier: "Foundation Coaching",
+    desc: "Structured coaching conducted after school hours.",
+  },
+  {
+    name: "Hybrid",
+    tier: "Edu Edge · Edu Ignite",
+    desc: "Weekday online classes + Sunday offline classes.",
+  },
+  {
+    name: "Online",
+    tier: "Edge Online · Ignite Online",
+    desc: "Live, interactive streaming classes.",
+  },
 ];
 
 /* Foundation tiers */
@@ -229,15 +255,14 @@ export const foundationFees = {
       prices: ["₹42,000", "₹42,000", "₹48,000"],
     },
   ],
-  remark: "First term school fee is waived off for the integrated program at SJPS-Siruseri.",
 };
 
 /* Edu Ignite (9–10) */
 export const igniteWhy = [
   { title: "Classroom & Integrated", desc: "A JEE/NEET foundation program for Grade 9 & 10, delivered within your school framework." },
   { title: "Board + Competitive, Together", desc: "School and competitive preparation move as one, with no duplication of effort." },
-  { title: "Two Delivery Modes", desc: "Choose Integrated (within school hours) or Hybrid (Sunday offline plus weekday online)." },
-  { title: "Study Material Included", desc: "Every fee includes Edutattva study material and online testing platform access." },
+  { title: "Three Tiers to Choose From", desc: "Ignite+ (Integrated, within school hours), Edu Ignite (Hybrid) or Ignite Online (live streaming)." },
+  { title: "Study Material Included", desc: "Integrated and Hybrid fees include Edutattva study material and online testing platform access." },
   { title: "Available at Two Campuses", desc: "Offered at SJPS (St John's), Siruseri and BHIS (Billabong), Kelambakkam." },
   { title: "Flexible Installments", desc: "Installment options are available for both Grade 9 and Grade 10." },
 ];
@@ -246,18 +271,25 @@ export const igniteFees = {
   columns: ["Grade 9", "Grade 10"],
   rows: [
     {
-      mode: "Integrated (within school hours)",
-      location: "SJPS Siruseri or BHIS Kelambakkam",
-      prices: ["₹80,000", "₹80,000"],
+      tier: "Ignite Online",
+      mode: "Online",
+      location: "Live streaming — 2 hrs/day, 2 days/week, 6–8 PM",
+      prices: ["₹50,000", "₹50,000"],
     },
     {
+      tier: "Edu Ignite",
       mode: "Hybrid — Sunday 6 hrs offline + weekday online (2 hrs/day, 2 days/week, 6–8 PM)",
       location: "SJPS Siruseri (offline) + Online",
       prices: ["₹65,000", "₹65,000"],
     },
+    {
+      tier: "Ignite+",
+      mode: "Integrated (within school hours)",
+      location: "SJPS Siruseri or BHIS Kelambakkam",
+      prices: ["₹80,000", "₹80,000"],
+    },
   ],
   installments: "Installments available.",
-  remark: "First term school fee is waived off for the integrated program at SJPS-Siruseri.",
 };
 
 /* Edu Edge (11–12) */
@@ -299,12 +331,23 @@ export const edgeTesting = [
 export const edgeFees = {
   columns: ["Grade 11", "Grade 12"],
   rows: [
-    { mode: "Online", location: "Live streaming — 2 hrs/day, 3 days/week, 6–8 PM", prices: ["₹50,000", "₹40,000"] },
-    { mode: "Integrated (within school hours)", location: "BHIS Kelambakkam", prices: ["₹100,000", "₹100,000"] },
     {
+      tier: "Edu Edge Online",
+      mode: "Online",
+      location: "Live streaming — 2 hrs/day, 3 days/week, 6–8 PM",
+      prices: ["₹50,000", "₹40,000"],
+    },
+    {
+      tier: "Edu Edge",
       mode: "Hybrid — Sunday 6 hrs + weekday online (2 hrs/day, 3 days/week, 6–8 PM)",
       location: "SJPS Siruseri (offline) + Online",
       prices: ["₹80,000", "₹75,000"],
+    },
+    {
+      tier: "Edu Edge+",
+      mode: "Integrated (within school hours)",
+      location: "BHIS Kelambakkam",
+      prices: ["₹100,000", "₹100,000"],
     },
   ],
   installments: "Installments available.",
@@ -334,7 +377,7 @@ export const onlineFeatures = [
   { title: "Weekly Doubt Clinics", desc: "Dedicated sessions for doubts, assignments, problem solving and guidance." },
   { title: "Advanced Testing & Analytics", desc: "Regular tests with detailed analysis, rank prediction & improvement plans." },
   { title: "Personal Mentorship", desc: "Continuous academic monitoring, study planning, motivation & parent updates." },
-  { title: "Comprehensive Study Material", desc: "Well-structured notes, assignments, PYQs, practice sheets & revision modules." },
+  { title: "Comprehensive Study Material", desc: "Well-structured notes, assignments, PYQs, practice sheets & revision modules — available separately for online students." },
 ];
 
 /* Why Edutattva (home) */
@@ -371,7 +414,6 @@ export const testimonials = [
 export const admissionSteps = [
   { title: "Enquiry", desc: "Share your details or call us — we understand your child's current stage and goals." },
   { title: "Counselling", desc: "A free counselling session maps the right program, mode and roadmap." },
-  { title: "Assessment", desc: "A short diagnostic helps place the student and personalise the plan." },
   { title: "Enrollment", desc: "Confirm the program, choose an installment plan and begin the journey." },
 ];
 
@@ -382,7 +424,7 @@ export const faqs = [
   },
   {
     q: "What is included in the fee?",
-    a: "Every fee includes Edutattva study material, online testing platform access and all applicable taxes. There are no hidden charges.",
+    a: "Integrated and Hybrid fees include Edutattva study material, online testing platform access and all applicable taxes. Online program fees do not include study material — books may be purchased separately for ₹5,000. There are no hidden charges.",
   },
   {
     q: "Where are the campuses?",
@@ -394,9 +436,32 @@ export const faqs = [
   },
   {
     q: "How do I book a free counselling session?",
-    a: "Submit the enquiry form on this page, call 7075 7075 40, or message us on WhatsApp — our team will confirm a slot that suits you.",
+    a: "Message us on WhatsApp or call 7075 7075 40 — our team will confirm a slot that suits you.",
   },
 ];
 
 export const feeIncludes =
-  "The fee includes Edutattva study material, online testing platform access, and is inclusive of all taxes.";
+  "Integrated and Hybrid fees include Edutattva study material, online testing platform access, and are inclusive of all taxes.";
+
+/* Fee-table footnotes — shared by the Edu Edge and Edu Ignite pages. */
+export const onlineMaterialNote = {
+  title: "Online programs — study material",
+  body: "Edutattva study material is not included in any Online program fee. Books may be purchased separately.",
+  price: "₹5,000",
+  priceLabel: "Books, purchased separately",
+};
+
+export const singleSubjectNote = {
+  title: "Single-subject tutoring — Hybrid & Online",
+  body: "Available on request, though we don't recommend it: competitive preparation works best as a full program across all subjects.",
+  options: [
+    { price: "₹50,000", label: "Including books for the selected subject" },
+    { price: "₹30,000", label: "Without books" },
+  ],
+};
+
+/* Shared header copy for the Online section on both program pages. */
+export const onlineIntro = {
+  subtitle: "Competitive exam prep made affordable",
+  body: "The personal attention of a classroom. The convenience of learning from home. Learn better, practise smarter, achieve more.",
+};

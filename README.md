@@ -22,10 +22,34 @@ app/                 One route per page (/, about, programs, foundation, edu-ign
                      edu-edge, faculty, results, admissions, contact) + layout, globals.css, icon.svg
 components/          Header, Footer, UtilityBar, FloatingButtons, Logo, Icon, Eyebrow, ExpBadge,
                      IconCircle, SectionHeading, Placeholder, Reveal, StatStrip, ProgramCard,
-                     E4Loop, CTABand, FeeTable, Testimonials, Accordion, EnquiryForm, ResultsTabs
+                     E4Loop, CTABand, OnlineSection, FeeTable, Testimonials, Accordion,
+                     EnquiryForm, ResultsTabs
 lib/data.ts          Single source of truth for all brochure content (programs, fees, faculty, FAQs…)
+app/_archive/        Unused-by-routing alternates (Next skips `_`-prefixed folders)
 reference/           Original poster (poster.jpeg) + 2026 brochure PDF
 ```
+
+## Program tiers
+
+Each **delivery mode is a named tier** of the program, and both program pages carry their own
+Online section (`components/OnlineSection.tsx`, anchored at `#online`):
+
+| Mode | Grades 9–10 | Grades 11–12 |
+| --- | --- | --- |
+| Online (live streaming) | Ignite Online — ₹50,000 | Edu Edge Online — ₹50,000 / ₹40,000 |
+| Hybrid (Sunday offline + weekday online) | Edu Ignite — ₹65,000 | Edu Edge — ₹80,000 / ₹75,000 |
+| Integrated (within school hours) | Ignite+ — ₹80,000 | Edu Edge+ — ₹100,000 |
+
+Online fees exclude study material (books ₹5,000 separately). Single-subject tutoring is offered on
+Hybrid & Online at ₹50,000 with books / ₹30,000 without. All of this lives in `lib/data.ts` and is
+rendered by `components/FeeTable.tsx` via its `onlineNote` / `tutoringNote` props.
+
+## Alternate versions (kept for later use)
+
+- `components/CTABandAlt.tsx` — the original CTA band with the "Book Free Counselling" button.
+  The live `CTABand` uses a WhatsApp button (pre-filled message) + phone number.
+- `app/_archive/admissions-with-form.tsx` — the original admissions page: four steps (including
+  "Assessment") and the full `EnquiryForm`. The live page is WhatsApp-led with three steps.
 
 ## Design system (see `app/globals.css`)
 
@@ -52,6 +76,26 @@ Extracted from the 2026 brochure `.pptx` and stored under `public/`:
 ## Still placeholder / TODO (marked with `data-placeholder`)
 
 - Results data — rank cards & year tabs in `components/ResultsTabs.tsx` are structured for real AIR/name/exam.
-- Contact page office hours (`[ … ]`) and the Google Maps iframes (currently area-name search embeds; drop in exact coords).
-- Enquiry form submit handler is front-end only — `// TODO: connect backend` in `components/EnquiryForm.tsx`.
-- Social links in the footer, and an Open Graph share image.
+- Contact page Sunday / public-holiday hours (`[ … ]`) and the Google Maps iframes (currently
+  area-name search embeds; drop in exact coords). Mon–Sat hours are confirmed: 9:00 AM – 8:00 PM.
+- Open Graph share image.
+- `components/EnquiryForm.tsx` is no longer on a live route (the admissions page is WhatsApp-led).
+  It is still referenced by `app/_archive/admissions-with-form.tsx` and still has
+  `// TODO: connect backend` if it is ever restored.
+
+## Global constants
+
+Social handles and contact details are all in the `site` object in `lib/data.ts` — edit once,
+updates everywhere (footer, contact page, email composer):
+
+```ts
+site.social.instagram   // https://www.instagram.com/edutattva.classes/
+site.social.linkedin    // https://www.linkedin.com/company/edutattva/
+site.social.youtube     // https://www.youtube.com/@Edutattvaclasses
+site.social.facebook    // https://www.facebook.com/Edutattva
+site.social.email       // enquiries.edutattva@gmail.com
+whatsappLink(message?)  // WhatsApp deep link, optionally pre-filling the chat
+```
+
+The Online section backdrop is `public/photos/online-class.jpg`, scaled to full width and faded
+vertically by an overlaid navy gradient in `components/OnlineSection.tsx`.

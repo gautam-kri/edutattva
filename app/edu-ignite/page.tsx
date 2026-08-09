@@ -5,14 +5,15 @@ import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import FeeTable from "@/components/FeeTable";
+import OnlineSection from "@/components/OnlineSection";
 import CTABand from "@/components/CTABand";
 import IconCircle from "@/components/IconCircle";
 import Icon, { type IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
-  title: "Edu Ignite (Grades 9–10) — JEE/NEET Foundation Program",
+  title: "Edu Ignite & Ignite+ (Grades 9–10) — JEE/NEET Foundation Program",
   description:
-    "Edu Ignite: Classroom & Integrated JEE/NEET foundation program for Grade 9 & 10. Integrated ₹80,000/grade or Hybrid ₹65,000. Installments available. SJPS Siruseri & BHIS Kelambakkam.",
+    "Edu Ignite: Classroom & Integrated JEE/NEET foundation program for Grade 9 & 10. Ignite+ (Integrated) ₹80,000, Edu Ignite (Hybrid) ₹65,000 or Ignite Online ₹50,000. Installments available. SJPS Siruseri & BHIS Kelambakkam.",
 };
 
 const whyIcons: IconName[] = ["cap", "layers", "globe", "notes", "pin", "handshake"];
@@ -22,20 +23,20 @@ export default function EduIgnitePage() {
   return (
     <>
       <PageHero
-        eyebrow="Edu Ignite · Grades 9–10"
+        eyebrow="Grades 9–10"
         title={
           <>
-            Classroom & Integrated{" "}
-            <span className="hl-gold">JEE / NEET foundation</span>{" "}for Grade 9 &amp; 10
+            Edu Ignite <span className="hl-gold">&amp; Ignite+</span>
           </>
         }
+        tagline="Classroom & Integrated JEE / NEET foundation for Grade 9 & 10"
         subtitle="The head start that compounds. Begin building real JEE/NEET foundations in Class IX — while Board preparation and competitive prep move together, not against each other."
       >
         <Link href="/admissions" className="btn btn-gold">
           Book Free Counselling
         </Link>
-        <a href="#fees" className="btn btn-ghost">
-          See fees <Icon name="arrow" size={18} />
+        <a href="#online" className="btn btn-ghost">
+          Ignite Online <Icon name="arrow" size={18} />
         </a>
       </PageHero>
 
@@ -68,13 +69,16 @@ export default function EduIgnitePage() {
           <SectionHeading
             eyebrow="Program Availability, Location & Fee"
             title="Edu Ignite fees (9–10)"
-            intro="Choose Integrated (within school hours) at SJPS Siruseri or BHIS Kelambakkam, or Hybrid — Sunday offline plus weekday online classes."
+            intro="Each delivery mode is a tier of the program: Ignite Online (live streaming), Edu Ignite (Hybrid — Sunday offline plus weekday online at SJPS Siruseri) and Ignite+ (Integrated, within school hours at SJPS Siruseri or BHIS Kelambakkam). Installments available."
           />
           <div className="mt-8">
-            <FeeTable fee={igniteFees} />
+            <FeeTable fee={igniteFees} onlineNote tutoringNote />
           </div>
         </div>
       </section>
+
+      {/* ===== IGNITE ONLINE ===== */}
+      <OnlineSection name="Edu Ignite Online" badge="Grades IX & X · Serious JEE | NEET Aspirants" />
 
       <CTABand
         title="Ignite the JEE/NEET journey early"

@@ -6,13 +6,12 @@ import {
   edgeHighlights,
   edgeTesting,
   edgeFees,
-  onlineCompare,
-  onlineFeatures,
 } from "@/lib/data";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import FeeTable from "@/components/FeeTable";
+import OnlineSection from "@/components/OnlineSection";
 import CTABand from "@/components/CTABand";
 import IconCircle from "@/components/IconCircle";
 import Icon, { type IconName } from "@/components/Icon";
@@ -35,18 +34,18 @@ const highlightIcons: IconName[] = [
   "mentor",
   "handshake",
 ];
-const featureIcons: IconName[] = ["chat", "users", "question", "chart", "mentor", "notes"];
 
 export default function EduEdgePage() {
   return (
     <>
       <PageHero
-        eyebrow="Edu Edge / Edu Edge+ · Grades 11–12"
+        eyebrow="Grades 11–12"
         title={
           <>
-            One Program. One System. <span className="hl-gold">One Goal.</span>
+            Edu Edge <span className="hl-gold">&amp; Edge+</span>
           </>
         }
+        tagline="One Program. One System. One Goal."
         subtitle="Integrated preparation for JEE (Main & Advanced), NEET and Board Examinations under the guidance of educators with over 20+ years of proven results. No duplication of effort. No loss of valuable study time."
       >
         <Link href="/admissions" className="btn btn-gold">
@@ -158,89 +157,16 @@ export default function EduEdgePage() {
           <SectionHeading
             eyebrow="Program Availability, Location & Fee"
             title="Edu Edge fees (11–12)"
-            intro="Choose Online, Integrated (BHIS Kelambakkam) or Hybrid (SJPS Siruseri — Sunday offline plus weekday online). Installments available."
+            intro="Each delivery mode is a tier of the program: Edu Edge Online (live streaming), Edu Edge (Hybrid — Sunday offline plus weekday online at SJPS Siruseri) and Edu Edge+ (Integrated, within school hours at BHIS Kelambakkam). Installments available."
           />
           <div className="mt-8">
-            <FeeTable fee={edgeFees} />
+            <FeeTable fee={edgeFees} onlineNote tutoringNote />
           </div>
         </div>
       </section>
 
       {/* ===== EDU EDGE ONLINE ===== */}
-      <section id="online" className="section bg-navy text-white scroll-mt-20">
-        <div className="container-x">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <span className="chip chip-crimson">Edu Edge Online</span>
-              <h2 className="mt-4 text-[clamp(2rem,4.5vw,3.2rem)] text-white">
-                Grade XI — Serious <span className="hl-gold">JEE | NEET</span> Aspirants Program
-              </h2>
-              <p className="mt-4 max-w-xl text-white/80">
-                The personal attention of a classroom. The convenience of learning from home. Learn
-                better, practise smarter, achieve more.
-              </p>
-            </div>
-            <div className="flex justify-center lg:justify-end">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/edu-edge/seal.png"
-                alt="Just ₹50 Thousand — All Inclusive. No hidden charges, everything included."
-                className="anim-float w-60 max-w-full drop-shadow-[0_22px_45px_rgba(245,183,0,0.35)]"
-              />
-            </div>
-          </div>
-
-          {/* Comparison */}
-          <div className="mt-14">
-            <h3 className="text-center text-[1.5rem] text-white">
-              Why is <span className="hl-crimson">Edu Edge Online</span> different?
-            </h3>
-            <div className="mt-8 grid items-stretch gap-5 md:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-7">
-                <span className="chip chip-crimson">Most Online Coaching</span>
-                <ul className="mt-5 space-y-3.5">
-                  {onlineCompare.most.map((m) => (
-                    <li key={m} className="flex items-start gap-3 text-white/75">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-crimson/20 text-crimson">
-                        <Icon name="close" size={14} />
-                      </span>
-                      {m}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-2xl border-2 border-lime/40 bg-lime/5 p-7">
-                <span className="chip chip-lime">Edu Edge Online Class</span>
-                <ul className="mt-5 space-y-3.5">
-                  {onlineCompare.edge.map((m) => (
-                    <li key={m} className="flex items-start gap-3 font-medium text-white">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lime text-navy">
-                        <Icon name="check" size={14} />
-                      </span>
-                      {m}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Six features */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {onlineFeatures.map((f, i) => (
-              <Reveal key={f.title} delay={i * 60} className="h-full">
-                <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-gold/15 text-gold">
-                    <Icon name={featureIcons[i]} size={24} />
-                  </span>
-                  <h4 className="mt-4 text-[1.05rem] font-bold text-white">{f.title}</h4>
-                  <p className="mt-2 text-[0.88rem] leading-relaxed text-white/70">{f.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <OnlineSection name="Edu Edge Online" badge="Grade XI & XII · Serious JEE | NEET Aspirants" />
 
       <CTABand
         title={
