@@ -388,25 +388,28 @@ export const whyEdutattva = [
   { title: "Affordable Excellence", desc: "Quality academic systems made more affordable — without compromising standards." },
 ];
 
-/* Testimonials */
-export const testimonials = [
+/* Written testimonials live in lib/testimonials.ts — drop new ones in there. */
+
+/* Video testimonials are read from public/video_testimonials/ at build time —
+   see lib/videoTestimonials.ts (server-only, so it lives outside this file). */
+
+/* Results — year-wise outcomes. `made` of `of` is rendered as a percentage. */
+export const results = [
   {
-    quote:
-      "The mentoring is unlike any coaching we've seen. My daughter's confidence and consistency changed within a term — she finally understands the 'why', not just the formula.",
-    name: "Parent of a Grade 10 student",
-    role: "Siruseri",
+    year: "2025",
+    stats: [
+      { label: "Ranked in JEE Advanced", made: 32, of: 58 },
+      { label: "Qualified for JEE Mains", made: 63, of: 105 },
+      { label: "Scored 80%+ in CBSE", made: 104, of: 139 },
+    ],
   },
   {
-    quote:
-      "The weekly tests and one-on-one analysis kept me honest about where I actually stood before JEE — my doubts never piled up.",
-    name: "Edu Edge student",
-    role: "Grade 12",
-  },
-  {
-    quote:
-      "Genuinely affordable for the depth of attention. The faculty's FIITJEE & FGS pedigree shows in how they teach — structured, patient and results-driven.",
-    name: "Parent of a Foundation student",
-    role: "Kelambakkam",
+    year: "2024",
+    stats: [
+      { label: "Ranked in JEE Advanced / NEET", made: 13, of: 33 },
+      { label: "Qualified for JEE Mains", made: 33, of: 52 },
+      { label: "Scored 80%+ in CBSE", made: 50, of: 65 },
+    ],
   },
 ];
 

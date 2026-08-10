@@ -20,6 +20,7 @@ import ExpBadge from "@/components/ExpBadge";
 import Photo from "@/components/Photo";
 import IconCircle from "@/components/IconCircle";
 import Icon, { type IconName } from "@/components/Icon";
+import { getVideoTestimonials } from "@/lib/videoTestimonials";
 
 const whyIcons: IconName[] = ["mentor", "clock", "chart", "handshake"];
 
@@ -80,6 +81,8 @@ function FacultyCard({
 }
 
 export default function HomePage() {
+  const videos = getVideoTestimonials();
+
   return (
     <>
       {/* ============ HERO ============ */}
@@ -347,11 +350,11 @@ export default function HomePage() {
           <SectionHeading
             center
             eyebrow="Video Stories"
-            title="Hear it straight from our families"
-            intro="Video testimonials from parents and students — landing in this space soon."
+            title="Hear it from those who have been there"
+            intro="Alumni of IIT and NIT campuses — now at Letstransport, Stanford GSB and Amazon."
           />
           <div className="mt-10">
-            <VideoTestimonials />
+            <VideoTestimonials items={videos} />
           </div>
         </div>
       </section>

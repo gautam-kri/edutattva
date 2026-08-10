@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { trustLine } from "@/lib/data";
+import { getVideoTestimonials } from "@/lib/videoTestimonials";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import ResultsTabs from "@/components/ResultsTabs";
@@ -10,10 +11,12 @@ import Icon from "@/components/Icon";
 export const metadata: Metadata = {
   title: "Results — Top Ranks in IIT-JEE & NEET, Year after Year",
   description:
-    "Edutattva results: rank cards, year-wise IIT-JEE & NEET highlights and a testimonial wall — a heritage of top ranks at FIITJEE & FGS, now under one roof.",
+    "Edutattva results: in 2025, 55% of our students were JEE Advanced rankers, 60% qualified JEE Main and 75% scored 80%+ in CBSE. Year-wise IIT-JEE, NEET and Board outcomes.",
 };
 
 export default function ResultsPage() {
+  const videos = getVideoTestimonials();
+
   return (
     <>
       <PageHero
@@ -24,27 +27,11 @@ export default function ResultsPage() {
             <span className="hl-gold">year after year</span>
           </>
         }
-        subtitle="Our faculty carry a heritage of top ranks and high scores. This is where every Edutattva result will be celebrated — structured, verifiable and proudly on display."
+        subtitle="Real numbers from real batches. Here is how Edutattva students performed in JEE Advanced, JEE Main and the CBSE Board examinations."
       />
 
-      {/* Notice banner */}
-      <section className="section-tight">
-        <div className="container-x">
-          <div className="flex items-start gap-4 rounded-2xl border border-gold/40 bg-gold-100/50 p-5 md:items-center">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gold text-navy">
-              <Icon name="trophy" size={24} />
-            </span>
-            <p className="text-[0.98rem] text-navy">
-              <strong className="font-bold">Built for real data.</strong> The year-wise statistics
-              and video testimonials below are placeholders — top ranks, selections and student
-              stories will populate here as each result season closes.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Year-wise rank cards */}
-      <section className="pb-16">
+      {/* Year-wise results */}
+      <section className="section">
         <div className="container-x">
           <ResultsTabs />
         </div>
@@ -72,11 +59,11 @@ export default function ResultsPage() {
           <SectionHeading
             center
             eyebrow="Video Testimonials"
-            title="Stories from our families"
-            intro="Video testimonials from parents and students will live in this space."
+            title="Hear it from those who have been there"
+            intro="Alumni of IIT and NIT campuses — now at Letstransport, Stanford GSB and Amazon."
           />
           <div className="mt-10">
-            <VideoTestimonials />
+            <VideoTestimonials items={videos} />
           </div>
         </div>
       </section>

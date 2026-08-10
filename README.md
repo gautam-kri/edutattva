@@ -75,13 +75,37 @@ Extracted from the 2026 brochure `.pptx` and stored under `public/`:
 
 ## Still placeholder / TODO (marked with `data-placeholder`)
 
-- Results data — rank cards & year tabs in `components/ResultsTabs.tsx` are structured for real AIR/name/exam.
+- Video testimonial **file sizes** — see the warning under "Video testimonials" below.
 - Contact page Sunday / public-holiday hours (`[ … ]`) and the Google Maps iframes (currently
   area-name search embeds; drop in exact coords). Mon–Sat hours are confirmed: 9:00 AM – 8:00 PM.
 - Open Graph share image.
 - `components/EnquiryForm.tsx` is no longer on a live route (the admissions page is WhatsApp-led).
   It is still referenced by `app/_archive/admissions-with-form.tsx` and still has
   `// TODO: connect backend` if it is ever restored.
+
+## Video testimonials
+
+Self-hosted, read from `public/video_testimonials/` at **build time** by
+`lib/videoTestimonials.ts`. Each clip pairs with a same-named `.txt`:
+
+```
+line 1   full name              e.g. Pushkar Singh
+line 2   institute              e.g. IIT Kharagpur
+line 3   job title | org        e.g. CEO/Co-Founder | Letstransport.in
+```
+
+An optional same-named `.jpg`/`.png` becomes the poster still — the three current ones are frames
+grabbed from the midpoint of each clip. Clips are ordered by filename, so
+rename to reorder. A clip with no `.txt` is skipped rather than rendered nameless; if the folder is
+empty the section falls back to placeholder cards. Cards are click-to-play — no video bytes are
+fetched until a visitor presses play.
+
+The loader is **server-only** (`node:fs`). Import it from a Server Component and pass the result to
+`<VideoTestimonials items={…} />`; never import it from a `"use client"` module.
+
+> ⚠️ **The current clips are too large to ship.** 194 MB total — and `sobhana.mp4` (112 MB) exceeds
+> GitHub's hard 100 MiB per-file limit, so `git push` will reject it. They are not gitignored.
+> Re-encode to web H.264/AAC (720p, CRF ~26) to land each around 3–8 MB before committing.
 
 ## Global constants
 
