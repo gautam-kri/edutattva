@@ -134,7 +134,7 @@ export default function Testimonials() {
         <div className="mt-7 flex items-center justify-center gap-3">
           <button
             type="button"
-            onClick={() => scrollToIndex(Math.max(0, active - 1))}
+            onClick={() => scrollToIndex((active - 1 + pages) % pages)}
             aria-label="Previous testimonials"
             className="grid h-10 w-10 place-items-center rounded-full border border-sky-200 text-navy transition-colors hover:bg-sky"
           >
@@ -158,7 +158,7 @@ export default function Testimonials() {
           </div>
           <button
             type="button"
-            onClick={() => scrollToIndex(Math.min(pages - 1, active + 1))}
+            onClick={() => scrollToIndex((active + 1) % pages)}
             aria-label="Next testimonials"
             className="grid h-10 w-10 place-items-center rounded-full border border-sky-200 text-navy transition-colors hover:bg-sky"
           >

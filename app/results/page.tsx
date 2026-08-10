@@ -33,6 +33,10 @@ export default function ResultsPage() {
       {/* Year-wise results */}
       <section className="section">
         <div className="container-x">
+          <p className="mx-auto mb-9 max-w-2xl text-center text-[1.05rem] leading-relaxed text-muted">
+            As a team of teachers, hundreds of students have been guided to success.<br></br>{" "}
+            <span className="font-semibold text-navy">Individually: thousands.</span>
+          </p>
           <ResultsTabs />
         </div>
       </section>
