@@ -46,7 +46,8 @@ export type IconName =
   | "facebook"
   | "window"
   | "loop"
-  | "play";
+  | "play"
+  | "download";
 
 const paths: Record<IconName, React.ReactNode> = {
   book: <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM20 18v3H6.5A2.5 2.5 0 0 1 4 18.5" />,
@@ -162,6 +163,13 @@ const paths: Record<IconName, React.ReactNode> = {
     </>
   ),
   arrow: <path d="M4 12h15m-6-6 6 6-6 6" />,
+  download: (
+    <>
+      <path d="M12 4v11" />
+      <path d="m7 10 5 5 5-5" />
+      <path d="M5 20h14" />
+    </>
+  ),
   calendar: (
     <>
       <rect x="3.5" y="5" width="17" height="16" rx="2" />

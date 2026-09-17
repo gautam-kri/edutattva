@@ -28,6 +28,8 @@ export type Promo = {
   formEmbedUrl: string;
   /** Same form, for the "open in a new tab" fallback. */
   formUrl: string;
+  /** Optional downloadable brochure, served from /public. No button if absent. */
+  brochureUrl?: string;
   enquiryMessage: string;
   /** Countdown target, ISO 8601 with offset. */
   registrationCloses: string;
@@ -57,6 +59,7 @@ const merit2026: Promo = {
   formEmbedUrl:
     "https://docs.google.com/forms/d/e/1FAIpQLSe2NzdQYkyDSJLc7IXumbvXLy-W8fuwwJgYk7ILOZvwAfZP-A/viewform?embedded=true",
   formUrl: "https://forms.gle/htzXa1U7LedMKymZ8",
+  brochureUrl: "/merit-brochure-26.pdf",
   enquiryMessage: "I'd like to know more about MERIT 2026",
   /** Assumed to be the night before the test — update once the real deadline is set. */
   registrationCloses: "2026-10-10T23:59:59+05:30",

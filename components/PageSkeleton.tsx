@@ -15,9 +15,11 @@ import { PAGE_READY_EVENT, onPageReady } from "@/lib/pageReady";
  * It is lifted by the inline script below, which runs while the document is
  * still parsing, once the fonts are in and the hero has sized itself (HeroFit),
  * so no layout shuffles into place in front of the visitor. The promo panel
- * needs no wait: it ships open in the HTML. That matters: the real page content is already in the HTML, so
- * the overlay must never wait for the React bundle to download before getting
- * out of the way. React only unmounts the (already invisible) node afterwards.
+ * needs no wait: it ships open in the HTML.
+ *
+ * The real page content is already in the HTML too, so the overlay must never
+ * wait indefinitely for the React bundle; MAX_WAIT_MS caps it. React only
+ * unmounts the (already invisible) node afterwards.
  */
 
 /** Never hold the page behind the skeleton longer than this. */

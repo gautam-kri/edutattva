@@ -4,9 +4,8 @@
    The skeleton overlay is lifted by a small inline script in the document (see
    PageSkeleton), not by React, so it is never gated on the JS bundle. That
    script owns the signal: it sets `window.__etsPageReady` and fires the event
-   below. Anything that must wait for the real page to be on screen — currently
-   the promo takeover — subscribes here, so the sequence is always
-   skeleton -> page -> promo.
+   below. Anything that must wait for the real page to be on screen subscribes
+   here — currently the promo's atmospheric arrival and HeroFit's re-measure.
    ============================================================ */
 
 export const PAGE_READY_EVENT = "edutattva:page-ready";
@@ -27,8 +26,6 @@ declare global {
     __etsPageReady?: boolean;
     /** Set by HeroFit once the hero has been sized against the final fonts. */
     __etsHeroReady?: boolean;
-    /** Set by PromoNotice once the panel is at its final height. */
-    __etsPromoReady?: boolean;
   }
 }
 

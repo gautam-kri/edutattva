@@ -20,13 +20,12 @@ import Icon from "./Icon";
  * absolutely positioned clone (`morphRef`) animates between their measured
  * positions, so the rest of the layout can stay fully responsive.
  *
- * This is phase 3 of the page load. PageSkeleton paints the structural
- * skeleton instantly (phase 1) and lifts once the page is styled and the fonts
- * are in (phase 2); only then does this panel bleed down over the page — the
- * navy curtain drops to full height, then the glows bloom, a light sweep
- * crosses it and the gold rule draws out. The promo never competes with the
- * page for the first paint. A visitor who already dismissed it this session
- * gets the collapsed bar with none of the entrance.
+ * The panel ships open in the server HTML, so it covers the screen on the
+ * first paint with no JavaScript involved. An inline script collapses it to the
+ * bar during parse for a visitor who already dismissed it this session, and
+ * fills the countdown digits so a slow load never shows 00:00:00:00. Once the
+ * page is on screen the atmospheric arrival plays: the glows bloom, a light
+ * sweep crosses the panel and the gold rule draws out.
  *
  * The whole component is gated on `activePromo`; see lib/promo.ts.
  */
@@ -125,7 +124,6 @@ try{if(sessionStorage.getItem(${JSON.stringify(
   useLayoutEffect(() => {
     if (!isPromoLive(promo, Date.now())) {
       setLive(false);
-      window.__etsPromoReady = true;
       return;
     }
     let dismissed = false;
@@ -134,19 +132,12 @@ try{if(sessionStorage.getItem(${JSON.stringify(
     } catch {
       /* storage unavailable — keep the panel open */
     }
+    // Sync React with what the inline script already did to the DOM. `ready`
+    // is still false here, so the height transition is off and nothing animates.
     if (dismissed) {
       setCollapsed(true);
       setBled(true);
     }
-    /*
-     * Open to full height here, before the first paint. `ready` is still false
-     * at this point so the height transition is off and the panel simply is
-     * full-screen rather than growing into it. Waiting for page-ready instead
-     * meant the skeleton lifted first and the visitor watched the page for the
-     * best part of a second before the takeover arrived. PageSkeleton holds its
-     * overlay until the flag below is set.
-     */
-    window.__etsPromoReady = true;
   }, [promo, storageKey]);
 
   useEffect(() => {
@@ -408,24 +399,30 @@ try{if(sessionStorage.getItem(${JSON.stringify(
                   ))}
                 </dl>
 
-                <div className="mt-[calc(var(--pv)*2.5)] flex flex-col items-center gap-[var(--pv)]">
+                {/*
+                  Phones: the label and a one-line countdown share a row, which
+                  frees a full row of height. Every mobile rule below is a
+                  max-md: variant, so the desktop layout is untouched.
+                */}
+                <div className="mt-[calc(var(--pv)*2.5)] flex flex-col items-center gap-[var(--pv)] max-md:flex-row max-md:gap-3">
                   {cd?.over ? (
                     <p className="text-[0.95rem] font-semibold text-white/80">Registration is now closed.</p>
                   ) : (
                     <>
                       <span
-                        className="text-[0.78rem] font-bold uppercase tracking-[0.16em] text-white/70"
+                        className="text-[0.78rem] font-bold uppercase tracking-[0.16em] text-white/70 max-md:max-w-[6.5rem] max-md:text-left max-md:text-[0.72rem] max-md:leading-tight max-md:tracking-[0.14em]"
                         style={condensed}
                       >
                         Registration closes in
                       </span>
                       {/*
-                        Below ~700px of viewport the four boxes are the single
-                        biggest block in the panel, so the same four numbers are
-                        shown on one line instead. Nothing is dropped, and the
-                        format matches the collapsed bar.
+                        The four boxes on desktop; the same four numbers on one
+                        line on phones and below ~700px of viewport, where the
+                        boxes would be the biggest block in the panel. Each
+                        variant only ever switches display one way, so there is
+                        no ordering conflict between them.
                       */}
-                      <div className="flex gap-2 [@media(max-height:700px)]:hidden md:gap-2.5">
+                      <div className="flex gap-2 max-md:hidden md:gap-2.5 [@media(max-height:700px)]:hidden">
                         {(
                           [
                             ["DAYS", "d", cd?.d],
@@ -456,7 +453,7 @@ try{if(sessionStorage.getItem(${JSON.stringify(
                         ))}
                       </div>
                       <div
-                        className="hidden items-baseline gap-1.5 rounded-xl border border-white/20 bg-white/[0.08] px-3.5 py-1.5 text-[1.05rem] font-extrabold tabular-nums text-white [@media(max-height:700px)]:flex"
+                        className="hidden items-baseline gap-1.5 rounded-xl border border-white/20 bg-white/[0.08] px-3.5 py-1.5 text-[1.05rem] font-extrabold tabular-nums text-white max-md:flex [@media(max-height:700px)]:flex"
                         style={condensed}
                       >
                         <span data-cd="d" suppressHydrationWarning>
@@ -480,24 +477,47 @@ try{if(sessionStorage.getItem(${JSON.stringify(
                   )}
                 </div>
 
-                <div className="mt-[calc(var(--pv)*2.25)] flex w-full max-w-[20rem] flex-col gap-[var(--pv)] md:max-w-none md:flex-row md:flex-wrap md:justify-center md:gap-3">
+                {/*
+                  Phones: a two-column grid, so Register and the brochure span
+                  the width while WhatsApp and Call sit side by side with short
+                  labels. Desktop keeps its single wrapping row and full labels.
+                */}
+                <div className="mt-[calc(var(--pv)*2.25)] flex w-full max-w-[20rem] flex-col gap-[var(--pv)] max-md:grid max-md:grid-cols-2 md:max-w-[36rem] md:flex-row md:flex-wrap md:justify-center md:gap-3 lg:max-w-none">
                   <button
                     type="button"
                     onClick={() => setFormOpen(true)}
-                    className="btn btn-gold w-full py-[calc(var(--pv)*1.2)] md:w-auto md:px-7"
+                    className="btn btn-gold w-full py-[calc(var(--pv)*1.2)] max-md:col-span-2 md:w-auto md:basis-[calc(50%-0.375rem)] md:px-7 lg:basis-auto"
                   >
                     Register — {promo.price}
                   </button>
+                  {promo.brochureUrl && (
+                    <a
+                      href={promo.brochureUrl}
+                      download={`${promo.title.replace(/\s+/g, "-")}-Brochure.pdf`}
+                      className="btn btn-ghost w-full py-[calc(var(--pv)*1.2)] max-md:col-span-2 md:w-auto md:basis-[calc(50%-0.375rem)] lg:basis-auto"
+                    >
+                      <Icon name="download" size={18} /> Download brochure
+                    </a>
+                  )}
                   <a
                     href={askHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-ghost w-full py-[calc(var(--pv)*1.2)] md:w-auto"
+                    aria-label="Ask on WhatsApp"
+                    className="btn btn-ghost w-full py-[calc(var(--pv)*1.2)] max-md:px-3 md:w-auto md:basis-[calc(50%-0.375rem)] lg:basis-auto"
                   >
-                    <Icon name="whatsapp" size={19} /> Ask on WhatsApp
+                    <Icon name="whatsapp" size={19} />
+                    <span className="md:hidden">WhatsApp</span>
+                    <span className="max-md:hidden">Ask on WhatsApp</span>
                   </a>
-                  <a href={`tel:${site.phoneDial}`} className="btn btn-ghost w-full py-[calc(var(--pv)*1.2)] md:w-auto">
-                    <Icon name="phone" size={18} /> Call {site.phoneDisplay}
+                  <a
+                    href={`tel:${site.phoneDial}`}
+                    aria-label={`Call ${site.phoneDisplay}`}
+                    className="btn btn-ghost w-full py-[calc(var(--pv)*1.2)] max-md:px-3 md:w-auto md:basis-[calc(50%-0.375rem)] lg:basis-auto"
+                  >
+                    <Icon name="phone" size={18} />
+                    <span className="md:hidden">Call</span>
+                    <span className="max-md:hidden">Call {site.phoneDisplay}</span>
                   </a>
                 </div>
 
