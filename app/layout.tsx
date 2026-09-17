@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
+import PageSkeleton from "@/components/PageSkeleton";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -75,6 +76,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${archivo.variable} ${barlow.variable} ${inter.variable}`}
     >
       <body>
+        {/*
+          The brand faces live in globals.css via @font-face, so the browser only
+          discovers them after the stylesheet parses — late enough that the page
+          paints in fallback type first. Preloading the four used above the fold
+          starts them with the document instead.
+        */}
+        {[
+          "/fonts/foundation-titles-hand-semibold.woff2",
+          "/fonts/fabiolo-smallcap.woff2",
+          "/fonts/agrandir-bold.woff2",
+          "/fonts/neue-einstellung-regular.woff2",
+        ].map((href) => (
+          <link key={href} rel="preload" as="font" type="font/woff2" href={href} crossOrigin="anonymous" />
+        ))}
+
+        <PageSkeleton />
+
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-navy focus:px-4 focus:py-2 focus:font-semibold focus:text-white"

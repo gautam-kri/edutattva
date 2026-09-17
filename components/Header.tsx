@@ -89,7 +89,7 @@ export default function Header() {
                   href={item.href}
                   aria-haspopup="true"
                   onClick={samePageToTop(item.href)}
-                  className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-[0.95rem] font-semibold transition-colors ${
+                  className={`flex items-center gap-1 rounded-full px-2.5 py-2 text-[0.92rem] font-semibold transition-colors xl:px-3.5 xl:text-[0.95rem] ${
                     isActive(pathname, item.href)
                       ? "text-royal"
                       : "text-navy hover:text-royal"
@@ -127,7 +127,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   onClick={samePageToTop(item.href)}
-                  className={`rounded-full px-3.5 py-2 text-[0.95rem] font-semibold transition-colors ${
+                  className={`rounded-full px-2.5 py-2 text-[0.92rem] font-semibold transition-colors xl:px-3.5 xl:text-[0.95rem] ${
                     isActive(pathname, item.href) ? "text-royal" : "text-navy hover:text-royal"
                   }`}
                   aria-current={isActive(pathname, item.href) ? "page" : undefined}

@@ -402,6 +402,17 @@
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { scrollbar-width: none; }
+
+  /* Promo notice: 100vh fallback for browsers without dvh. The real height is
+     set inline by PromoNotice so a stale CSS build cannot collapse the panel. */
+  .promo-h-open { height: calc(100vh - 72px); }
+
+  /* Promo notice: a single light sweep across the full bleed as it lands */
+  @keyframes promoSweep {
+    from { transform: translateX(0) skewX(-12deg); }
+    to { transform: translateX(440%) skewX(-12deg); }
+  }
+  .promo-sweep { animation: promoSweep 1.1s var(--ease-out-quart) 0.1s both; }
 }
 
 /* ------------------------------------------------------------

@@ -17,7 +17,7 @@ export default function Logo({ variant = "full", theme = "dark", className = "" 
         alt="Edutattva Classes logo"
         width={44}
         height={44}
-        className="h-11 w-auto shrink-0"
+        className="h-9 w-auto shrink-0 sm:h-11"
         style={
           theme === "light"
             ? { filter: "drop-shadow(0 0 5px rgba(234,241,251,0.55)) drop-shadow(0 1px 2px rgba(0,0,0,0.4))" }
@@ -28,13 +28,13 @@ export default function Logo({ variant = "full", theme = "dark", className = "" 
       {variant === "full" && (
         <span className="flex translate-y-[6px] flex-col leading-none">
           <span
-            className="text-[1.32rem] font-bold leading-none tracking-tight"
+            className="text-[clamp(0.98rem,4.2vw,1.32rem)] font-bold leading-none tracking-tight"
             style={{ color: wordColor, fontFamily: "var(--font-wordmark)" }}
           >
             EDUTATTVA <span style={{ color: "var(--color-royal-400)" }}>CLASSES</span>
           </span>
           <span
-            className="mt-1 text-[0.68rem] font-normal tracking-[0.08em]"
+            className="mt-1 text-[clamp(0.55rem,2.2vw,0.68rem)] font-normal tracking-[0.08em]"
             style={{ color: tagColor, fontFamily: "var(--font-tagline)" }}
           >
             Where Fundamentals Become Excellence

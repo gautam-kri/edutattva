@@ -37,18 +37,22 @@ function StatItem({
   label,
   run,
   combined = false,
+  compact = false,
 }: {
   value: number;
   suffix: string;
   label: string;
   run: boolean;
   combined?: boolean;
+  compact?: boolean;
 }) {
   const n = useCountUp(value, run);
   return (
-    <div className="text-center px-3">
+    <div className={`text-center ${compact ? "px-2" : "px-3"}`}>
       <div
-        className="text-[clamp(2.2rem,4.5vw,3.4rem)] font-extrabold leading-none text-white"
+        className={`font-extrabold leading-none text-white ${
+          compact ? "text-[clamp(1.6rem,3.6vw,2.6rem)]" : "text-[clamp(2.2rem,4.5vw,3.4rem)]"
+        }`}
         style={{ fontFamily: "var(--font-condensed)" }}
       >
         {n.toLocaleString("en-IN")}
@@ -59,14 +63,20 @@ function StatItem({
         )}
         <span style={{ color: "var(--color-gold)" }}>{suffix}</span>
       </div>
-      <div className="mt-2 text-[0.82rem] font-medium uppercase tracking-[0.1em] text-white/70">
+      <div
+        className={`font-medium uppercase text-white/70 ${
+          compact
+            ? "mt-1.5 text-[0.66rem] leading-tight tracking-[0.08em] sm:text-[0.74rem]"
+            : "mt-2 text-[0.82rem] tracking-[0.1em]"
+        }`}
+      >
         {label}
       </div>
     </div>
   );
 }
 
-export default function StatStrip() {
+export default function StatStrip({ compact = false }: { compact?: boolean }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [run, setRun] = useState(false);
 
@@ -99,13 +109,19 @@ export default function StatStrip() {
     <div>
       <div
         ref={ref}
-        className="grid grid-cols-2 gap-y-8 gap-x-4 md:grid-cols-4 md:divide-x md:divide-white/15"
+        className={`grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-white/15 ${
+          compact ? "gap-x-4 gap-y-4 sm:gap-y-5" : "gap-x-4 gap-y-8"
+        }`}
       >
         {homeStats.map((s) => (
-          <StatItem key={s.label} {...s} run={run} />
+          <StatItem key={s.label} {...s} run={run} compact={compact} />
         ))}
       </div>
-      <p className="mt-7 text-center text-[0.7rem] tracking-wide text-white/25">
+      <p
+        className={`text-center tracking-wide text-white/25 ${
+          compact ? "mt-3 text-[0.65rem] sm:mt-4" : "mt-7 text-[0.7rem]"
+        }`}
+      >
         *Combined across faculty.
       </p>
     </div>
